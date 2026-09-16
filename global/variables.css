@@ -1,0 +1,32 @@
+:root {
+  /* font  */
+  --font-primary: "Raleway", sans-serif;
+  /* colors  */
+  --background-color: #1e1e1e;
+  /* admin filmalisa yazilari ucun */
+  --title-color: #c3c8d4;
+  --white-color: #ffffff;
+  /* dasborddaki ag olmayan reng  */
+  --sidebar-color: #aeaeae;
+  /* button color */
+  --button-color: #9b51e0;
+  /* hover color  */
+  --hover-color: #652f8d;
+  /* dasbord pick color  */
+  --dasboardpick-color: #58209d;
+
+  /* Font size  */
+  --fs-s14: 14px;
+  --fs-s20: 20px;
+  --fs-s24: 24px;
+  --fs-s48: 48px;
+  /* Font-weights */
+  --fw-bold: 700;
+  --fw-regular: 400;
+  /* line-heights */
+  --lh-h62: 62px;
+  --lh-h13: 13px;
+  --lh-h24: 24px;
+  --lh-h100: 100%;
+  --lh-h80: 80px;
+}
