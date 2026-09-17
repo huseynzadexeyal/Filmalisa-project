@@ -16,23 +16,27 @@
   --dasboardpick-color: #58209d;
   /* input color  */
   --input-color: #475069;
+  --lpinput-color: #808080;
 
   /* Font size  */
   --fs-s14: 14px;
   --fs-s16: 16px;
   --fs-s20: 20px;
   --fs-s24: 24px;
+  --fs-s30: 30px;
   --fs-s48: 48px;
   --fs-s40: 40px;
   --fs-s70: 70px;
   /* Font-weights */
   --fw-bold: 700;
   --fw-regular: 400;
-  --fw-reglog: 500;
+  --fw-semibold: 600;
+  --fw-semreg: 500;
   /* line-heights */
   --lh-h62: 62px;
   --lh-h13: 13px;
   --lh-h24: 24px;
+  --lh-h30: 30px;
   --lh-h100: 100%;
   --lh-h80: 80px;
   /* ölçülər */
