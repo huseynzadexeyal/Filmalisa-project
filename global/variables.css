@@ -2,7 +2,7 @@
   /* font  */
   --font-primary: "Raleway", sans-serif;
   /* colors  */
-  --background-color: #1e1e1e;
+  --background-color: #1d1d1d;
   /* admin filmalisa yazilari ucun */
   --title-color: #c3c8d4;
   --white-color: #ffffff;
@@ -14,19 +14,27 @@
   --hover-color: #652f8d;
   /* dasbord pick color  */
   --dasboardpick-color: #58209d;
+  /* input color  */
+  --input-color: #475069;
 
   /* Font size  */
   --fs-s14: 14px;
+  --fs-s16: 16px;
   --fs-s20: 20px;
   --fs-s24: 24px;
   --fs-s48: 48px;
+  --fs-s40: 40px;
+  --fs-s70: 70px;
   /* Font-weights */
   --fw-bold: 700;
   --fw-regular: 400;
+  --fw-reglog: 500;
   /* line-heights */
   --lh-h62: 62px;
   --lh-h13: 13px;
   --lh-h24: 24px;
   --lh-h100: 100%;
   --lh-h80: 80px;
+  /* ölçülər */
+  --page-max-width: 1440px;
 }
