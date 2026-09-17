@@ -7,88 +7,314 @@
     <link rel="stylesheet" href="/style/style.css" />
   </head>
   <body>
-    <div class="landing-page">
-      <header class="landing-header">
-        <div class="landing-header__brand">
-          <img
-            src="/assets/images/filmalisa.svg"
-            alt=""
-            class="landing-header__logo"
-          />
-          <span class="landing-header__name">Filmalisa</span>
+    <!-- Bütün layihəni 1440px çərçivəsində saxlayan əsas wrapper -->
+    <main class="wrapper-1440">
+      <div class="landing-page">
+        <header class="landing-header">
+          <div class="landing-header__brand">
+            <img
+              src="/assets/images/filmalisa.svg"
+              alt="Filmalisa Logo"
+              class="landing-header__logo"
+            />
+            <span class="landing-header__name">Filmalisa</span>
+          </div>
+          <a href="/login/login.html">
+            <button class="landing-header__signin" type="button">
+              Sign in
+            </button>
+          </a>
+        </header>
+
+        <section class="landing-hero">
+          <h1 class="landing-hero__title">
+            Unlimited movies, TV shows, and more
+          </h1>
+          <p class="landing-hero__subtitle">
+            Filmalisa is a movie search platform
+          </p>
+          <p class="landing-hero__text">
+            Ready to watch? Enter your email to create or restart your
+            membership.
+          </p>
+
+          <!-- Action register səhifəsinə yönləndirir -->
+          <form class="landing-hero__form" action="/register/register.html">
+            <input
+              class="landing-hero__input"
+              type="email"
+              name="email"
+              placeholder="Email address"
+              required
+            />
+            <button class="landing-hero__submit" type="submit">
+              Get Started
+              <img src="/assets/icons/arrow.svg" alt="" />
+            </button>
+          </form>
+        </section>
+      </div>
+
+      <!-- TV Bölməsi -->
+      <section class="landing-tv">
+        <div class="landing-tv__content">
+          <h2 class="landing-tv__title">Enjoy on your TV</h2>
+          <p class="landing-tv__text">
+            Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray
+            players, and more.
+          </p>
         </div>
 
-        <button class="landing-header__signin" type="button">Sign in</button>
-      </header>
-
-      <section class="landing-hero">
-        <h1 class="landing-hero__title">
-          Unlimited movies, TV shows, and more
-        </h1>
-        <p class="landing-hero__subtitle">
-          Filmalisa is a movie search platform
-        </p>
-        <p class="landing-hero__text">
-          Ready to watch? Enter your email to create or restart your membership.
-        </p>
-
-        <form class="landing-hero__form">
-          <input
-            class="landing-hero__input"
-            type="email"
-            name="email"
-            placeholder="Email address"
-            required
+        <div class="landing-tv__media">
+          <img
+            src="/assets/images/komputer.svg"
+            alt="TV"
+            class="landing-tv__image"
           />
-          <button class="landing-hero__submit" type="submit">
-            Get Started
-            <img src="/assets/icons/arrow.svg" alt="" />
-          </button>
-        </form>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/j5sZWzO_FVY?si=xpZNEqeJgX1U3MQp"
+            title="YouTube video player"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            class="landing-tv__video"
+          ></iframe>
+        </div>
       </section>
-    </div>
 
-    <section class="landing-tv">
-      <div class="landing-tv__content">
-        <h2 class="landing-tv__title">Enjoy on your TV</h2>
-        <p class="landing-tv__text">
-          Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray
-          players, and more.
-        </p>
-      </div>
+      <!-- Devices Bölməsi -->
+      <section class="landing-devices">
+        <div class="landing-devices__media">
+          <img
+            src="/assets/images/tabletmobile.svg"
+            alt="Devices"
+            class="landing-devices__image"
+          />
+        </div>
 
-      <div class="landing-tv__media">
-        <img
-          src="/assets/images/komputer.svg"
-          alt=""
-          class="landing-tv__image"
-        />
-        <iframe
-          class="landing-tv__video"
-          src="https://www.youtube.com/embed/rPueV8GY-2Q?autoplay=1&mute=1&loop=1&playlist=rPueV8GY-2Q&controls=0"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </section>
+        <div class="landing-devices__content">
+          <h2 class="landing-devices__title">Watch everywhere</h2>
+          <p class="landing-devices__text">
+            Stream unlimited movies and TV shows on your phone, tablet, laptop,
+            and TV.
+          </p>
+        </div>
+      </section>
 
-    <section class="landing-devices">
-      <div class="landing-devices__media">
-        <img
-          src="/assets/images/tabletmobile.svg"
-          alt=""
-          class="landing-devices__image"
-        />
-      </div>
+      <!-- Kids Bölməsi -->
+      <section class="landing-kids">
+        <div class="landing-kids__content">
+          <h2 class="landing-kids__title">Create profiles for kids</h2>
+          <p class="landing-kids__text">
+            Send kids on adventures with their favorite characters in a space
+            made just for them—free with your membership.
+          </p>
+        </div>
 
-      <div class="landing-devices__content">
-        <h2 class="landing-devices__title">Watch everywhere</h2>
-        <p class="landing-devices__text">
-          Stream unlimited movies and TV shows on your phone, tablet, laptop,
-          and TV.
-        </p>
-      </div>
-    </section>
+        <div class="landing-kids__media">
+          <img
+            src="/assets/images/kids.svg"
+            alt="Kids profiles"
+            class="landing-kids__image"
+          />
+        </div>
+      </section>
+
+      <!-- Contact Bölməsi -->
+      <section class="landing-contact">
+        <div class="landing-contact__container">
+          <h2 class="landing-contact__title">Contact us</h2>
+
+          <form class="landing-contact__form" action="#">
+            <input
+              class="landing-contact__input"
+              type="text"
+              name="fullname"
+              placeholder="Fullname"
+              required
+            />
+
+            <input
+              class="landing-contact__input"
+              type="email"
+              name="email"
+              placeholder="Email address"
+              required
+            />
+
+            <textarea
+              class="landing-contact__textarea"
+              name="reason"
+              placeholder="Reason"
+              rows="5"
+              required
+            ></textarea>
+
+            <button class="landing-contact__submit" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+      <!-- FAQ Bölməsi -->
+      <section class="landing-faq">
+        <div class="landing-faq__container">
+          <h2 class="landing-faq__title">Frequently Asked Questions</h2>
+
+          <!-- Sual 1 -->
+          <details class="landing-faq__item">
+            <summary class="landing-faq__question">What is Filmalisa?</summary>
+            <div class="landing-faq__answer">
+              Filmalisa is a streaming service that offers a wide variety of
+              award-winning TV shows, movies, anime, documentaries, and more on
+              thousands of internet-connected devices.
+            </div>
+          </details>
+
+          <!-- Sual 2 -->
+          <details class="landing-faq__item">
+            <summary class="landing-faq__question">
+              How much does Filmalisa cost?
+            </summary>
+            <div class="landing-faq__answer">
+              Watch Filmalisa on your smartphone, tablet, Smart TV, laptop, or
+              streaming device, all for one fixed monthly fee. Plans range from
+              cheap to slightly less cheap.
+            </div>
+          </details>
+
+          <!-- Sual 3 -->
+          <details class="landing-faq__item">
+            <summary class="landing-faq__question">Where can I watch?</summary>
+            <div class="landing-faq__answer">
+              Watch anywhere, anytime. Sign in with your Filmalisa account to
+              watch instantly on the web at filmalisa.com from your personal
+              computer or on any internet-connected device.
+            </div>
+          </details>
+
+          <!-- Sual 4 -->
+          <details class="landing-faq__item">
+            <summary class="landing-faq__question">How do I cancel?</summary>
+            <div class="landing-faq__answer">
+              Filmalisa is flexible. There are no pesky contracts and no
+              commitments. You can easily cancel your account online in two
+              clicks.
+            </div>
+          </details>
+
+          <!-- Sual 5 -->
+          <details class="landing-faq__item">
+            <summary class="landing-faq__question">
+              What can I watch on Filmalisa?
+            </summary>
+            <div class="landing-faq__answer">
+              Filmalisa has an extensive library of feature films,
+              documentaries, TV shows, anime, award-winning Filmalisa originals,
+              and more.
+            </div>
+          </details>
+
+          <!-- Sual 6 -->
+          <details class="landing-faq__item">
+            <summary class="landing-faq__question">
+              Is Filmalisa good for kids?
+            </summary>
+            <div class="landing-faq__answer">
+              The Filmalisa Kids experience is included in your membership to
+              give parents control while kids enjoy family-friendly TV shows and
+              movies in their own space.
+            </div>
+          </details>
+        </div>
+      </section>
+      <!-- Footer Bölməsi -->
+      <footer class="landing-footer">
+        <div class="landing-footer__container">
+          <ul class="landing-footer__links">
+            <!-- 1-ci sətir -->
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">FAQ</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Help Center</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Account</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Media Center</a>
+            </li>
+
+            <!-- 2-ci sətir -->
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Investor Relations</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Jobs</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Filmalisa Shop</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Redeem Gift Cards</a>
+            </li>
+
+            <!-- 3-cü sətir -->
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Buy Gift Cards</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Ways to Watch</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Terms of Use</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Privacy</a>
+            </li>
+
+            <!-- 4-cü sətir -->
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Cookie Preferences</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Corporate Information</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Contact Us</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Speed Test</a>
+            </li>
+
+            <!-- 5-ci sətir -->
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Legal Notices</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Only on Filmalisa</a>
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link"
+                >Do Not Sell or Share Personal Information</a
+              >
+            </li>
+            <li class="landing-footer__item">
+              <a href="#" class="landing-footer__link">Ad Choices</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </main>
   </body>
 </html>
