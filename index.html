@@ -1,11 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filmalisa</title>
+    <link rel="stylesheet" href="/style/style.css" />
+  </head>
+  <body>
+    <div class="landing-page">
+      <header class="landing-header">
+        <div class="landing-header__brand">
+          <img
+            src="/assets/images/filmalisa.svg"
+            alt=""
+            class="landing-header__logo"
+          />
+          <span class="landing-header__name">Filmalisa</span>
+        </div>
+
+        <button class="landing-header__signin" type="button">Sign in</button>
+      </header>
+
+      <section class="landing-hero">
+        <h1 class="landing-hero__title">
+          Unlimited movies, TV shows, and more
+        </h1>
+        <p class="landing-hero__subtitle">
+          Filmalisa is a movie search platform
+        </p>
+        <p class="landing-hero__text">
+          Ready to watch? Enter your email to create or restart your membership.
+        </p>
+
+        <form class="landing-hero__form">
+          <input
+            class="landing-hero__input"
+            type="email"
+            name="email"
+            placeholder="Email address"
+            required
+          />
+          <button class="landing-hero__submit" type="submit">
+            Get Started
+            <img src="/assets/icons/arrow.svg" alt="" />
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <section class="landing-tv">
+      <div class="landing-tv__content">
+        <h2 class="landing-tv__title">Enjoy on your TV</h2>
+        <p class="landing-tv__text">
+          Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray
+          players, and more.
+        </p>
+      </div>
+
+      <div class="landing-tv__media">
+        <img
+          src="/assets/images/komputer.svg"
+          alt=""
+          class="landing-tv__image"
+        />
+        <iframe
+          class="landing-tv__video"
+          src="https://www.youtube.com/embed/rPueV8GY-2Q?autoplay=1&mute=1&loop=1&playlist=rPueV8GY-2Q&controls=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <section class="landing-devices">
+      <div class="landing-devices__media">
+        <img
+          src="/assets/images/tabletmobile.svg"
+          alt=""
+          class="landing-devices__image"
+        />
+      </div>
+
+      <div class="landing-devices__content">
+        <h2 class="landing-devices__title">Watch everywhere</h2>
+        <p class="landing-devices__text">
+          Stream unlimited movies and TV shows on your phone, tablet, laptop,
+          and TV.
+        </p>
+      </div>
+    </section>
+  </body>
 </html>
