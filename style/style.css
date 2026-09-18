@@ -1,9 +1,24 @@
 @import url(/global/global.css);
+
+/* --- ƏSAS LAYOUT TƏNZİMLƏMƏLƏRİ --- */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+}
+
+.wrapper-1440 {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #000000;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* --- HERO BÖLMƏSİ --- */
 .landing-page {
   position: relative;
-
-  max-width: 1440px;
-  margin: 0 auto;
   box-sizing: border-box;
   background-image: url("/assets/images/backgroundimg.jpg");
   background-size: cover;
@@ -15,19 +30,15 @@
   content: "";
   position: absolute;
   inset: 0;
-  /* background-color: rgba(0, 0, 0, 0.6); */
   z-index: 1;
 }
 
 .landing-header {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 30px 50px;
   position: relative;
   z-index: 2;
@@ -36,7 +47,6 @@
 .landing-header__brand {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 14px;
 }
 
@@ -51,6 +61,10 @@
   line-height: var(--lh-h80);
   letter-spacing: 10%;
   color: var(--title-color);
+}
+
+.landing-header a {
+  text-decoration: none;
 }
 
 .landing-header__signin {
@@ -72,8 +86,6 @@
 .landing-hero {
   position: relative;
   z-index: 2;
-  max-width: 1440px;
-  margin: 0 auto;
   padding: 0 48px;
   min-height: calc(100vh - 80px);
   display: flex;
@@ -86,10 +98,7 @@
 .landing-hero__title {
   font-size: var(--fs-s48);
   font-weight: var(--fw-bold);
-  line-height: var(--lh-h62);
-  letter-spacing: 2%;
   color: var(--white-color);
-
   line-height: 1.2;
   margin: 0;
 }
@@ -99,7 +108,6 @@
   font-weight: var(--fw-regular);
   color: var(--white-color);
   line-height: var(--lh-h30);
-  letter-spacing: 5%;
   margin: 16px 0 0;
 }
 
@@ -156,12 +164,12 @@
 .landing-hero__submit:hover {
   background-color: #9333ea;
 }
+
+/* --- TV BÖLMƏSİ --- */
 .landing-tv {
   width: 100%;
   background-color: #000000;
   border-top: 8px solid #232326;
-  max-width: 1440px;
-  margin: 0 auto;
   box-sizing: border-box;
   padding: 100px 48px;
   display: flex;
@@ -170,16 +178,12 @@
   gap: 40px;
 }
 
-.landing-tv__content {
-  max-width: 1440px;
-}
-
 .landing-tv__title {
   font-size: var(--fs-s48);
   font-weight: var(--fw-bold);
   color: var(--white-color);
   margin: 0;
-  line-height: var(--lh-h62);
+  line-height: 1.2;
 }
 
 .landing-tv__text {
@@ -208,28 +212,15 @@
   left: 6%;
   width: 88%;
   height: 68%;
-  border: 2px solid red; /* test üçün — düzgün yerini tapandan sonra sil */
   pointer-events: none;
+  z-index: 1;
 }
 
-@media only screen and (max-width: 900px) {
-  .landing-tv {
-    flex-direction: column;
-    text-align: center;
-    padding: 60px 24px;
-  }
-
-  .landing-tv__media {
-    width: 100%;
-  }
-}
-
+/* --- DEVICES BÖLMƏSİ --- */
 .landing-devices {
   width: 100%;
   background-color: #000000;
   border-top: 8px solid #232326;
-  max-width: 1440px;
-  margin: 0 auto;
   box-sizing: border-box;
   padding: 100px 48px;
   display: flex;
@@ -246,7 +237,6 @@
   font-size: var(--fs-s48);
   font-weight: var(--fw-bold);
   color: var(--white-color);
-  line-height: var(--lh-h62);
   margin: 0;
   line-height: 1.2;
 }
@@ -272,28 +262,332 @@
 }
 
 .landing-devices__video {
+  position: absolute;
   border: none;
   background-color: #000000;
   pointer-events: none;
+  z-index: 1;
 }
 
-/* monitor ekranı — şəkildəki dəqiq proporsiyaya görə */
-.landing-devices__video--monitor {
-  top: 10%;
-  left: 17%;
-  width: 65%;
-  height: 50%;
-  border-radius: 2px;
+.landing-devices__video--tablet {
+  top: 15%;
+  left: 10%;
+  width: 45%;
+  height: 60%;
+  border-radius: 4px;
 }
 
+.landing-devices__video--mobile {
+  top: 25%;
+  left: 65%;
+  width: 25%;
+  height: 45%;
+  border-radius: 6px;
+}
+
+/* --- KIDS BÖLMƏSİ --- */
+.landing-kids {
+  width: 100%;
+  background-color: #000000;
+  border-top: 8px solid #232326;
+  box-sizing: border-box;
+  padding: 100px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.landing-kids__content {
+  max-width: 550px;
+}
+
+.landing-kids__title {
+  font-size: var(--fs-s48);
+  font-weight: var(--fw-bold);
+  color: var(--white-color);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.landing-kids__text {
+  font-size: var(--fs-s24);
+  font-weight: var(--fw-regular);
+  color: var(--white-color);
+  line-height: var(--lh-h30);
+  margin-top: 16px;
+}
+
+.landing-kids__media {
+  position: relative;
+  flex-shrink: 1;
+  width: 630px;
+}
+
+.landing-kids__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- CONTACT US BÖLMƏSİ --- */
+.landing-contact {
+  width: 100%;
+  background-color: #000000;
+  border-top: 8px solid #232326;
+  padding: 100px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.landing-contact__container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-contact__title {
+  font-size: var(--fs-s48);
+  font-weight: var(--fw-bold);
+  color: var(--white-color);
+  line-height: var(--lh-h62);
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+
+.landing-contact__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.landing-contact__input,
+.landing-contact__textarea {
+  width: 100%;
+  background-color: #000000;
+  border: 1px solid #3f3f46;
+  border-radius: 4px;
+  padding: 16px;
+  color: var(--white-color);
+  font-size: var(--fs-s16);
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+/* Siçanı xanaların üzərinə gətirdikdə çərçivə bənövşəyi olsun */
+.landing-contact__input:hover,
+.landing-contact__textarea:hover {
+  border-color: var(--hover-color);
+}
+.landing-contact__input::placeholder,
+.landing-contact__textarea::placeholder {
+  color: var(--contactus-color);
+}
+
+.landing-contact__input:focus,
+.landing-contact__textarea:focus {
+  border-color: var(--button-color);
+}
+
+.landing-contact__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.landing-contact__submit {
+  width: 208px;
+  height: 56px;
+  margin: 10px auto 0;
+  background-color: var(--button-color);
+  color: var(--white-color);
+  font-size: var(--fs-s24);
+  font-weight: var(--fw-semibold);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.landing-contact__submit:hover {
+  background-color: #9333ea;
+}
+
+/* --- FAQ BÖLMƏSİ --- */
+.landing-faq {
+  width: 100%;
+  background-color: #000000;
+  border-top: 8px solid #232326;
+  padding: 80px 24px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.landing-faq__container {
+  width: 100%;
+  max-width: 800px; /* Sətirlərin çox uzun olmaması üçün limit */
+}
+
+.landing-faq__title {
+  font-size: var(--fs-s48);
+  font-weight: var(--fw-bold);
+  color: var(--white-color);
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+
+.landing-faq__item {
+  background-color: #2d2d2d;
+  margin-bottom: 8px;
+  color: var(--white-color);
+  transition: background-color 0.2s ease;
+}
+
+.landing-faq__item:hover {
+  background-color: #414141; /* Üzərinə gələndə rəngin bir az açılması */
+}
+
+.landing-faq__question {
+  padding: 24px;
+  font-size: var(--fs-s24);
+  cursor: pointer;
+  list-style: none; /* Standart HTML oxunu gizlədir */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Safari brauzeri üçün standart oxu gizlətmək */
+.landing-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+/* Sualın sağına + işarəsi əlavə edirik */
+.landing-faq__question::after {
+  content: "+";
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Sual kliklənib açılanda + işarəsi 45 dərəcə fırlanıb X (çarpaz) olur */
+details[open] .landing-faq__question::after {
+  transform: rotate(45deg);
+}
+
+.landing-faq__answer {
+  padding: 0 24px 24px 24px;
+  font-size: var(--fs-s20);
+  line-height: 1.5;
+  color: #d4d4d8;
+}
+/* --- FOOTER BÖLMƏSİ --- */
+.landing-footer {
+  width: 100%;
+  background-color: #000000;
+  border-top: 8px solid #232326;
+  padding: 60px 48px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.landing-footer__container {
+  width: 100%;
+  max-width: 1000px; /* Linklərin ortada səliqəli dayanması üçün limit */
+}
+
+.landing-footer__links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 bərabər sütun */
+  gap: 16px;
+  list-style: none; /* Yanındakı nöqtələri gizlədirik */
+  padding: 0;
+  margin: 0;
+}
+
+.landing-footer__item {
+  margin-bottom: 12px;
+}
+
+.landing-footer__link {
+  color: #a3a3a3; /* Şəkildəki kimi tünd boz rəng */
+  font-size: var(--fs-s14);
+  text-decoration: underline; /* Altından xətt */
+  transition: color 0.2s ease;
+}
+
+/* Siçanı üzərinə gətirəndə rəngi biraz açılsın (istəyə bağlı, UX üçün yaxşıdır) */
+.landing-footer__link:hover {
+  color: #ffffff;
+}
+
+/* ========================================================
+   RESPONSİV DİZAYN (PLANŞET VƏ MOBİL ÜÇÜN)
+   ======================================================== */
+
+/* --- PLANŞET EKRANLARI ÜÇÜN (900px-ə qədər) --- */
 @media only screen and (max-width: 900px) {
+  /* TV və Kids bölmələri alt-alta düşür */
+  .landing-tv,
+  .landing-kids {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 24px;
+  }
+
+  /* Devices bölməsi alt-alta və tərsinə (şəkil üstdə, mətn altdə) düşür */
   .landing-devices {
     flex-direction: column-reverse;
     text-align: center;
     padding: 60px 24px;
   }
 
-  .landing-devices__media {
+  /* Media elementləri tam ekran genişliyini alır */
+  .landing-tv__media,
+  .landing-devices__media,
+  .landing-kids__media {
     width: 100%;
+  }
+
+  /* Footer linkləri 3 sütuna keçir */
+  .landing-footer__links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- MOBİL EKRANLAR ÜÇÜN (600px-ə qədər) --- */
+@media only screen and (max-width: 600px) {
+  /* FAQ bölməsinin mətn ölçüləri kiçilir */
+  .landing-faq__title {
+    font-size: var(--fs-s30);
+  }
+
+  .landing-faq__question {
+    font-size: var(--fs-s20);
+    padding: 16px;
+  }
+
+  .landing-faq__answer {
+    font-size: var(--fs-s16);
+    padding: 0 16px 16px 16px;
+  }
+
+  /* Footer daha yığcam olur və linklər 2 sütuna keçir */
+  .landing-footer {
+    padding: 40px 24px;
+  }
+
+  .landing-footer__links {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 12px;
   }
 }
