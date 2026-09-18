@@ -1,0 +1,269 @@
+@import url(/global/global.css);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ===========================================
+   ACCOUNT PAGE — LAYOUT & SIDEBAR
+   =========================================== */
+
+.app-layout {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 800px;
+  background-color: var(--background-color);
+  border-radius: var(--fs-s16);
+  overflow: hidden;
+}
+
+.sidebar {
+  position: fixed;
+  top: 12px;
+  left: 20px;
+  width: 72px;
+  height: calc(100vh - 24px);
+  max-height: 1096px;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  z-index: 1000;
+}
+
+.sidebar-logo {
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  width: 100%;
+}
+
+.sidebar-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: transparent; 
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.sidebar-link .svg-icon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 6px var(--white-transparent-60));
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: var(--white-transparent-15);
+  border-radius: 12px;
+}
+
+.sidebar-link:hover .svg-icon {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px var(--white-transparent-90));
+}
+
+
+.sidebar-link.active .svg-icon {
+  opacity: 1;
+  filter: grayscale(0%) drop-shadow(0 0 10px var(--success-transparent-50));
+  transform: scale(1.1);
+}
+
+/* ===========================================
+   MAIN CONTENT & AVATAR
+   =========================================== */
+
+.main-content {
+  margin-left: 92px; 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  width: calc(100% - 92px);
+}
+
+.avatar-container {
+  width: 232px;
+  height: 232px;
+  margin-bottom: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--success-color) 0%,
+    var(--accent-color) 50%,
+    var(--info-color) 100%
+  );
+  padding: 4px;
+  box-shadow: 0 0 20px var(--success-transparent-30);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.avatar-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px var(--success-transparent-50);
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--avatar-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--placeholder-color);
+  font-size: 80px;
+  position: relative;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.avatar-container:hover .avatar-placeholder {
+  background-color: var(--avatar-hover-color);
+  color: var(--placeholder-hover-color);
+}
+
+.upload-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  border: 3px solid var(--surface-color);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--avatar-color);
+  display: block;
+}
+
+/* ===========================================
+   ACCOUNT FORM & INPUTS
+   =========================================== */
+
+.account-form {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--surface-elevated-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 16px;
+  padding: 0 20px;
+  height: 56px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.input-wrapper:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 12px var(--hover-shadow-color);
+}
+
+.input-icon,
+.action-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.input-wrapper input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--white-color);
+  font-size: 15px;
+  padding: 0 12px;
+}
+
+.input-wrapper input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.disabled-wrapper {
+  opacity: 0.6;
+  background-color: var(--surface-muted-color);
+}
+
+.save-btn {
+  width: 100%;
+  height: 56px;
+  background-color: var(--button-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.2s;
+}
+
+.save-btn:hover {
+  background-color: var(--hover-color);
+}
