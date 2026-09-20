@@ -1,0 +1,236 @@
+@import url(/global/global.css);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ===========================================
+   ACCOUNT PAGE — LAYOUT & SIDEBAR
+   =========================================== */
+
+.app-layout {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 800px;
+  background-color: var(--background-color);
+  border-radius: var(--fs-s16);
+  overflow: hidden;
+}
+
+.sidebar {
+  position: fixed;
+  top: 12px;
+  left: 20px;
+  width: 72px;
+  height: calc(100vh - 24px);
+  max-height: 1096px;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  z-index: 1000;
+}
+
+.sidebar-logo {
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  width: 100%;
+}
+
+.sidebar-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: transparent;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.sidebar-link .svg-icon {
+  width: 28px;
+  height: 28px;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 6px var(--white-transparent-60));
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: var(--white-transparent-15);
+  border-radius: 12px;
+}
+
+.sidebar-link:hover .svg-icon {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px var(--white-transparent-90));
+}
+
+.sidebar-link.active .svg-icon {
+  opacity: 1;
+  filter: grayscale(0%) drop-shadow(0 0 10px var(--success-transparent-50));
+  transform: scale(1.1);
+}
+
+/* ===========================================
+   CONTENT WRAPPER
+   =========================================== */
+
+.content {
+  margin-left: 112px;
+  padding: 32px 48px;
+}
+
+/* ===========================================
+   SEARCH HEADER
+   =========================================== */
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 240px;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--white-color);
+  width: 100%;
+  font-size: 14px;
+}
+
+.search-add-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  border: none;
+  color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.search-add-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===========================================
+   MOVIE GRID
+   =========================================== */
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 292px);
+  gap: 16px;
+}
+
+.movie-card {
+  width: 292px;
+  height: 440px;
+}
+
+.poster-wrap {
+  position: relative;
+  width: 292px;
+  height: 440px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.movie-card:hover .poster {
+  transform: scale(1.03);
+}
+
+.poster-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.category-tag {
+  color: var(--main-blue, #4a9eff);
+  font-size: 12px;
+}
+
+.rating {
+  display: flex;
+  gap: 2px;
+}
+
+.star-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.movie-title {
+  font-size: 15px;
+  font-weight: 500;
+}
