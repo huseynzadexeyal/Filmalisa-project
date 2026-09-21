@@ -34,11 +34,11 @@
       </div>
 
       <nav class="sidebar-nav">
-        <a href="#" class="sidebar-link" title="Home">
+        <a href="../index.html" class="sidebar-link" title="Home">
           <img src="../assets/icons/home.svg" alt="Home" class="svg-icon" />
         </a>
         <a
-          href="./search.html"
+          href="../search-panel/search.html"
           class="sidebar-link active"
           title="Movies/Series"
         >
@@ -48,14 +48,18 @@
             class="svg-icon"
           />
         </a>
-        <a href="./account.html" class="sidebar-link" title="Account">
+        <a href="../account/account.html" class="sidebar-link" title="Account">
           <img
             src="../assets/icons/account.svg"
             alt="Account"
             class="svg-icon"
           />
         </a>
-        <a href="#" class="sidebar-link" title="Favorites">
+        <a
+          href="../favourite/favourite.html"
+          class="sidebar-link"
+          title="Favorites"
+        >
           <img
             src="../assets/icons/favourite.svg"
             alt="Favorites"
@@ -68,11 +72,23 @@
     <!-- MAIN -->
     <main class="content">
       <div class="search-header">
-        <h2 class="page-title">Search result</h2>
+        <h2 class="page-title">
+          Search result
+          <img
+            src="../assets/icons/arrow.svg"
+            alt="arrow"
+            class="title-arrow"
+          />
+        </h2>
 
         <div class="search-bar">
-          <input type="text" class="search-input" placeholder="Search..." />
-          <button class="search-add-btn">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search..."
+          />
+          <button class="search-add-btn" id="searchBtn">
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
