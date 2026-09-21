@@ -1,0 +1,232 @@
+@import url('../../global/reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Numans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    font-family: Raleway, sans-serif ;
+    background-color: #171616;
+}
+
+.container {
+    max-width: 1440px;
+}
+
+.dashboard {
+    display: flex;
+    gap: 24px;
+}
+
+.sidebar_menu {
+    width: 250px;
+    background-color: #2D2D2D;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sidebar_logo {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar_logo img {
+    width: 40px;
+    height: 40px;
+}
+
+
+.sidebar_logo h4 {
+    font-family: Numans, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 80px;
+    letter-spacing: -2%;
+    color: #C3C8D4;
+}
+
+.sidebar_link.active  {
+    background-color: #58209D;
+    color: white;
+}
+
+.sidebar_link {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0%;
+    padding: 20px 13px 20px 40px;
+    color: #AEAEAE;
+}
+
+.sidebar_link:hover {
+    background-color: #58209D;
+}
+
+.sidebar_link img {
+    width: 15px;
+    height: 15px;
+}
+
+.sidebar_link_logout {
+    display: flex;
+    gap: 13px;
+    margin-top: auto;
+    padding: 40px;
+    color: #8F96A8;
+    text-decoration: none;
+}
+
+.sidebar_logo {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+    padding-left: 34px;
+}
+
+.dashboard_content {
+    background-color: #171616;;
+    flex: 1;
+}
+
+
+.dashboard_content_hello {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 36px;
+    padding-right: 116px;
+    padding-bottom: 80px;
+}
+
+.dashboard_content_hello_1 p {
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #CCCCCC;
+}
+
+.dashboard_content_hello_1 h3 {
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+}
+
+.dashboard_content_hello_2 {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.dashboard_content_hello_2 button {
+    padding: 8px 25px;
+    border-radius: 4px;
+    background-color: #9B51E0;
+    border: 1px solid #9B51E0;
+    color: #FFFFFF;
+    margin-right: 25px;
+    cursor: pointer;
+    font-family: Raleway, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.dashboard_content_hello_2 h3{
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 12px;
+    line-height: 13px;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+}
+
+.table_content {
+    margin-top: 30px;    
+    min-width: 1085px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table_content tbody {
+    background-color: #FFFFFF;
+}
+
+.table_content thead tr {
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 50px;
+    padding-top: 10px;
+    border-radius: 8px;
+}
+
+
+.table_content th,
+.table_content td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 16px 15px;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.modalDiv {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modalDiv.active {
+    display: flex;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modalContent {
+    /* display: flex;
+    flex-direction: column; */
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    width: 300px;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+

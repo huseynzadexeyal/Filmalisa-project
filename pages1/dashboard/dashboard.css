@@ -1,0 +1,180 @@
+@import url('../../global/reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Numans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    font-family: Raleway, sans-serif ;
+    background-color: #171616;
+}
+
+.container {
+    max-width: 1440px;
+}
+
+.dashboard {
+    display: flex;
+    gap: 24px;
+}
+
+.sidebar_menu {
+    width: 250px;
+    background-color: #2D2D2D;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sidebar_logo {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar_logo img {
+    width: 40px;
+    height: 40px;
+}
+
+
+.sidebar_logo h4 {
+    font-family: Numans, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 80px;
+    letter-spacing: -2%;
+    color: #C3C8D4;
+}
+
+.sidebar_link.active  {
+    background-color: #58209D;
+    color: white;
+}
+
+.sidebar_link {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0%;
+    padding: 20px 13px 20px 40px;
+    color: #AEAEAE;
+}
+
+.sidebar_link:hover {
+    background-color: #58209D;
+}
+
+.sidebar_link img {
+    width: 15px;
+    height: 15px;
+}
+
+.sidebar_link_logout {
+    display: flex;
+    gap: 13px;
+    margin-top: auto;
+    padding: 40px;
+    color: #8F96A8;
+    text-decoration: none;
+}
+
+.sidebar_logo {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+    padding-left: 34px;
+}
+
+.dashboard_content {
+    background-color: #171616;;
+    flex: 1;
+    /* width: 1120px; */
+}
+
+
+.dashboard_content_hello {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 36px;
+    padding-right: 116px;
+    padding-bottom: 80px;
+    /* width: 1083px; */
+    /* gap: 867px; */
+}
+
+.dashboard_content_hello_1 p {
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #CCCCCC;
+}
+
+.dashboard_content_hello_1 h3 {
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+}
+
+.dashboard_content_hello_2 {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.dashboard_content_hello_2 h3{
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 12px;
+    line-height: 13px;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+}
+
+.dashboards_cards {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 20px;
+    padding-right: 77px;
+}
+
+.card { 
+    /* width: 234px; */
+    height: 203px;
+    background-color: #2D2D2D; 
+    border-radius: 30px; 
+    padding: 20px; 
+}
+
+.card:hover {
+    background-color: #652F8D;
+}
+
+.card p {
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #D7D7D7;
+    padding-bottom: 8px;
+}
+
+.card h3 {
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-style: Semi Bold;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+}
+
