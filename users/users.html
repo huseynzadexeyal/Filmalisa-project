@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard — Filmalisa Admin</title>
-    <link rel="stylesheet" href="/dashboard/dashboard.css" />
+    <title>Users — Filmalisa Admin</title>
+    <link rel="stylesheet" href="/users/users.css" />
   </head>
   <body>
     <div class="container">
       <div class="dashboard">
-        <!-- Sidebar -->
+        <!-- Sidebar - Tamamilə digər səhifələrdəki ilə eyni -->
         <aside class="sidebar_menu">
           <div class="sidebar_logo">
             <img src="/assets/icons/image 1.svg" alt="Filmalisa logo" />
@@ -37,7 +37,7 @@
                 </a>
               </li>
               <li>
-                <a href="/users/users.html" class="sidebar_link">
+                <a href="/users/users.html" class="sidebar_link active">
                   <img src="/assets/icons/Users.svg" alt="" />
                   <span>Users</span>
                 </a>
@@ -78,48 +78,33 @@
           <div class="dashboard_content_hello">
             <div class="dashboard_content_hello_1">
               <p>Hi Admin</p>
-              <h3>Dashboard</h3>
+              <h3>Users</h3>
             </div>
             <div class="dashboard_content_hello_2">
+              <!-- Create düyməsi çıxarıldı -->
               <img src="/assets/icons/Ellipse 6.svg" alt="" />
               <h3>Admin</h3>
             </div>
           </div>
 
-          <div class="dashboards_cards">
-            <div class="card">
-              <p>Favorite actions</p>
-              <h3>121</h3>
-            </div>
-            <div class="card">
-              <p>Users</p>
-              <h3>10</h3>
-            </div>
-            <div class="card">
-              <p>Movies</p>
-              <h3>40</h3>
-            </div>
-            <div class="card">
-              <p>Comments</p>
-              <h3>45</h3>
-            </div>
-            <div class="card">
-              <p>Categories</p>
-              <h3>12</h3>
-            </div>
-            <div class="card">
-              <p>Actors</p>
-              <h3>20</h3>
-            </div>
-            <div class="card">
-              <p>Contacts</p>
-              <h3>20</h3>
-            </div>
-          </div>
+          <table class="table_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <!-- Məlumatlar JS ilə gələcək -->
+            </tbody>
+          </table>
         </main>
       </div>
     </div>
 
-    <script src="/dashboard/dashboard.js"></script>
+    <script src="/users/users.js"></script>
   </body>
 </html>
