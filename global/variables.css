@@ -62,4 +62,23 @@
   --lh-h80: 80px;
   /* ölçülər */
   --page-max-width: 1440px;
+  /* admin panel  */
+  --db-font: Raleway, sans-serif;
+  --db-font-logo: Numans, sans-serif;
+
+  --db-bg: #171616;
+  --db-sidebar-bg: #2d2d2d;
+  --db-accent: #58209d;
+  --db-accent-hover: #652f8d;
+  --db-button: #9b51e0;
+
+  --db-text-primary: #ffffff;
+  --db-text-secondary: #cccccc;
+  --db-text-muted: #aeaeae;
+  --db-text-faint: #8f96a8;
+  --db-text-logo: #c3c8d4;
+
+  --db-sidebar-width: 250px;
+  --db-radius-link: 0 20px 20px 0;
+  
 }
