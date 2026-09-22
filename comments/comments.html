@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard — Filmalisa Admin</title>
-    <link rel="stylesheet" href="/dashboard/dashboard.css" />
+    <title>Comments — Filmalisa Admin</title>
+    <link rel="stylesheet" href="/comments/comments.css" />
   </head>
   <body>
     <div class="container">
@@ -43,7 +43,7 @@
                 </a>
               </li>
               <li>
-                <a href="/comments/comments.html" class="sidebar_link">
+                <a href="/comments/comments.html" class="sidebar_link active">
                   <img src="/assets/icons/Comments.svg" alt="" />
                   <span>Comments</span>
                 </a>
@@ -78,7 +78,7 @@
           <div class="dashboard_content_hello">
             <div class="dashboard_content_hello_1">
               <p>Hi Admin</p>
-              <h3>Dashboard</h3>
+              <h3>Comments</h3>
             </div>
             <div class="dashboard_content_hello_2">
               <img src="/assets/icons/Ellipse 6.svg" alt="" />
@@ -86,40 +86,59 @@
             </div>
           </div>
 
-          <div class="dashboards_cards">
-            <div class="card">
-              <p>Favorite actions</p>
-              <h3>121</h3>
-            </div>
-            <div class="card">
-              <p>Users</p>
-              <h3>10</h3>
-            </div>
-            <div class="card">
-              <p>Movies</p>
-              <h3>40</h3>
-            </div>
-            <div class="card">
-              <p>Comments</p>
-              <h3>45</h3>
-            </div>
-            <div class="card">
-              <p>Categories</p>
-              <h3>12</h3>
-            </div>
-            <div class="card">
-              <p>Actors</p>
-              <h3>20</h3>
-            </div>
-            <div class="card">
-              <p>Contacts</p>
-              <h3>20</h3>
-            </div>
-          </div>
+          <table class="table_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Movie</th>
+                <th>User Comment</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="commentsTableBody">
+              <!-- JS ilə doldurulacaq -->
+            </tbody>
+          </table>
         </main>
       </div>
     </div>
 
-    <script src="/dashboard/dashboard.js"></script>
+    <!-- Təsdiq Modalı -->
+    <div class="modalDiv" id="deleteModal">
+      <div class="modalContent modalContent--small">
+        <button
+          class="close"
+          id="closeModalBtn"
+          type="button"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <div class="modal-body">
+          <h3 class="modal-title">Bu rəyi silmək istədiyinizə əminsiniz?</h3>
+          <p class="modal-text">
+            Silindikdən sonra bu əməliyyatı geri qaytarmaq mümkün deyil.
+          </p>
+          <div class="modal-actions">
+            <button
+              id="cancelDeleteBtn"
+              class="category-form__submit btn-cancel"
+              type="button"
+            >
+              Ləğv et
+            </button>
+            <button
+              id="confirmDeleteBtn"
+              class="category-form__submit btn-danger"
+              type="button"
+            >
+              Bəli, Sil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/comments/comments.js"></script>
   </body>
 </html>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard — Filmalisa Admin</title>
-    <link rel="stylesheet" href="/dashboard/dashboard.css" />
+    <title>Contact Us — Filmalisa Admin</title>
+    <link rel="stylesheet" href="/contact/contact.css" />
   </head>
   <body>
     <div class="container">
@@ -49,7 +49,7 @@
                 </a>
               </li>
               <li>
-                <a href="/contact/contact.html" class="sidebar_link">
+                <a href="/contact/contact.html" class="sidebar_link active">
                   <img src="/assets/icons/Contact us.svg" alt="" />
                   <span>Contact us</span>
                 </a>
@@ -78,7 +78,7 @@
           <div class="dashboard_content_hello">
             <div class="dashboard_content_hello_1">
               <p>Hi Admin</p>
-              <h3>Dashboard</h3>
+              <h3>Contact Requests</h3>
             </div>
             <div class="dashboard_content_hello_2">
               <img src="/assets/icons/Ellipse 6.svg" alt="" />
@@ -86,40 +86,59 @@
             </div>
           </div>
 
-          <div class="dashboards_cards">
-            <div class="card">
-              <p>Favorite actions</p>
-              <h3>121</h3>
-            </div>
-            <div class="card">
-              <p>Users</p>
-              <h3>10</h3>
-            </div>
-            <div class="card">
-              <p>Movies</p>
-              <h3>40</h3>
-            </div>
-            <div class="card">
-              <p>Comments</p>
-              <h3>45</h3>
-            </div>
-            <div class="card">
-              <p>Categories</p>
-              <h3>12</h3>
-            </div>
-            <div class="card">
-              <p>Actors</p>
-              <h3>20</h3>
-            </div>
-            <div class="card">
-              <p>Contacts</p>
-              <h3>20</h3>
-            </div>
-          </div>
+          <table class="table_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="contactTableBody">
+              <!-- JS ilə doldurulacaq -->
+            </tbody>
+          </table>
         </main>
       </div>
     </div>
 
-    <script src="/dashboard/dashboard.js"></script>
+    <!-- Təsdiq Modalı -->
+    <div class="modalDiv" id="deleteModal">
+      <div class="modalContent">
+        <button
+          class="close"
+          id="closeModalBtn"
+          type="button"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <div class="modal-body">
+          <h3 class="modal-title">Bu əlaqə müraciətini silmək istəyirsiniz?</h3>
+          <p class="modal-text">Bu əməliyyat geri qaytarıla bilməz.</p>
+          <div class="modal-actions">
+            <button
+              id="cancelDeleteBtn"
+              class="category-form__submit btn-cancel"
+              type="button"
+            >
+              Ləğv et
+            </button>
+            <button
+              id="confirmDeleteBtn"
+              class="category-form__submit btn-danger"
+              type="button"
+            >
+              Bəli, Sil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/contact/contact.js"></script>
   </body>
 </html>

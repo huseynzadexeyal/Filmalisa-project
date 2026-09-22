@@ -1,8 +1,5 @@
-@import url("/global/global.css");
+@import url("../../global/global.css");
 
-/* ===========================================
-   BASE
-   =========================================== */
 body {
   font-family: var(--db-font);
   background-color: var(--db-bg);
@@ -12,11 +9,7 @@ body {
   max-width: 1440px;
   margin: 0 auto;
 }
-.logo-title {
-  font-size: var(--fs-s20);
-  font-weight: var(--fw-regular);
-  line-height: var(--lh-h80);
-}
+
 /* ===========================================
    LAYOUT
    =========================================== */
@@ -26,7 +19,7 @@ body {
 }
 
 /* ===========================================
-   SIDEBAR
+   SIDEBAR (Eynilə digər səhifələrdəki kimi)
    =========================================== */
 .sidebar_menu {
   width: var(--db-sidebar-width);
@@ -73,7 +66,6 @@ body {
   font-weight: 400;
   font-size: 14px;
   line-height: 13px;
-  letter-spacing: 0%;
   color: var(--db-text-muted);
   text-decoration: none;
   border-radius: var(--db-radius-link);
@@ -119,18 +111,19 @@ body {
 }
 
 /* ===========================================
-   MAIN CONTENT
+   MAIN CONTENT — header
    =========================================== */
 .dashboard_content {
   background-color: var(--db-bg);
   flex: 1;
+  min-width: 0;
 }
 
 .dashboard_content_hello {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 36px 116px 80px 0;
+  padding: 36px 116px 40px 0;
 }
 
 .dashboard_content_hello_1 p {
@@ -150,8 +143,8 @@ body {
 
 .dashboard_content_hello_2 {
   display: flex;
-  align-items: center;
   gap: 6px;
+  align-items: center;
 }
 
 .dashboard_content_hello_2 img {
@@ -168,44 +161,72 @@ body {
 }
 
 /* ===========================================
-   CARDS
+   USERS TABLE
    =========================================== */
-.dashboards_cards {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  gap: 20px;
-  padding-right: 77px;
+.table_content {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.card {
-  height: 203px;
-  background-color: var(--db-sidebar-bg);
-  border-radius: var(--db-radius-card);
-  padding: 20px;
-  transition: background-color 0.2s ease;
-  color: var(--title-color);
-  border-radius: 30px;
+.table_content thead tr {
+  font-family: var(--db-font);
+  font-weight: 400;
+  font-size: 14px;
+  background-color: #1e1e1e;
+  color: var(--db-text-primary);
+  height: 50px;
 }
 
-.card:hover {
-  background-color: var(--db-accent-hover);
-  cursor: pointer;
+.table_content tbody {
+  background-color: var(--db-text-primary);
+  color: #1d1d1d; /* Text rəngi ağ fon üzərində oxunacaq şəkildə */
 }
 
-.card p {
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1;
-  letter-spacing: 0%;
-  color: var(--db-text-card-label);
-  padding-bottom: 8px;
+.table_content tbody tr {
+  transition: background-color 0.15s ease;
 }
 
-.card h3 {
-  font-family: var(--db-font-number);
+.table_content tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table_content tbody tr:hover {
+  background-color: #e8e0f2;
+}
+
+.table_content th,
+.table_content td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 14px 15px;
+}
+
+.cell-name {
   font-weight: 600;
-  font-size: 30px;
-  line-height: 1;
+}
+
+.table-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-family: var(--db-font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.table-btn:hover {
+  opacity: 0.85;
+}
+
+.table-btn--edit {
+  background-color: var(--db-button);
   color: var(--db-text-primary);
 }
 
@@ -213,11 +234,6 @@ body {
    RESPONSIVE
    =========================================== */
 @media only screen and (max-width: 1200px) {
-  .dashboards_cards {
-    grid-template-columns: repeat(3, 1fr);
-    padding-right: 24px;
-  }
-
   .dashboard_content_hello {
     padding-right: 24px;
   }
@@ -248,18 +264,16 @@ body {
     padding: 16px;
   }
 
-  .dashboards_cards {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 16px;
-  }
-
   .dashboard_content_hello {
     padding: 24px 16px;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-}
 
-@media only screen and (max-width: 560px) {
-  .dashboards_cards {
-    grid-template-columns: 1fr;
+  .table_content {
+    margin: 0 16px;
+    max-width: none;
+    display: block;
+    overflow-x: auto;
   }
 }

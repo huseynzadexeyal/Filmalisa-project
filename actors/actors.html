@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard — Filmalisa Admin</title>
-    <link rel="stylesheet" href="/dashboard/dashboard.css" />
+    <title>Actors — Filmalisa Admin</title>
+    <link rel="stylesheet" href="/actors/actors.css" />
   </head>
   <body>
     <div class="container">
@@ -48,6 +48,7 @@
                   <span>Comments</span>
                 </a>
               </li>
+
               <li>
                 <a href="/contact/contact.html" class="sidebar_link">
                   <img src="/assets/icons/Contact us.svg" alt="" />
@@ -78,48 +79,77 @@
           <div class="dashboard_content_hello">
             <div class="dashboard_content_hello_1">
               <p>Hi Admin</p>
-              <h3>Dashboard</h3>
+              <h3>Actors</h3>
             </div>
             <div class="dashboard_content_hello_2">
+              <!-- Create Düyməsi -->
+              <button class="button" id="createActorBtn" type="button">
+                Create
+              </button>
               <img src="/assets/icons/Ellipse 6.svg" alt="" />
               <h3>Admin</h3>
             </div>
           </div>
 
-          <div class="dashboards_cards">
-            <div class="card">
-              <p>Favorite actions</p>
-              <h3>121</h3>
-            </div>
-            <div class="card">
-              <p>Users</p>
-              <h3>10</h3>
-            </div>
-            <div class="card">
-              <p>Movies</p>
-              <h3>40</h3>
-            </div>
-            <div class="card">
-              <p>Comments</p>
-              <h3>45</h3>
-            </div>
-            <div class="card">
-              <p>Categories</p>
-              <h3>12</h3>
-            </div>
-            <div class="card">
-              <p>Actors</p>
-              <h3>20</h3>
-            </div>
-            <div class="card">
-              <p>Contacts</p>
-              <h3>20</h3>
-            </div>
-          </div>
+          <table class="table_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Photo & Name</th>
+                <th>Biography / Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="actorsTableBody">
+              <!-- JS ilə doldurulacaq -->
+            </tbody>
+          </table>
         </main>
       </div>
     </div>
 
-    <script src="/dashboard/dashboard.js"></script>
+    <!-- Create / Edit Modal -->
+    <div class="modalDiv" id="actorModal">
+      <div class="modalContent">
+        <button
+          class="close"
+          id="closeModalBtn"
+          type="button"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+
+        <form id="actorForm" class="category-form">
+          <h3 class="modal-title" id="modalTitle">Create Actor</h3>
+
+          <input
+            class="category-form__input"
+            type="text"
+            id="actorName"
+            placeholder="Actor Name"
+            required
+          />
+          <input
+            class="category-form__input"
+            type="url"
+            id="actorImage"
+            placeholder="Image URL (e.g. https://...)"
+            required
+          />
+          <input
+            class="category-form__input"
+            type="text"
+            id="actorBio"
+            placeholder="Biography or Role"
+            required
+          />
+
+          <button class="category-form__submit" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="/actors/actors.js"></script>
   </body>
 </html>
