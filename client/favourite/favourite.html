@@ -20,10 +20,51 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <!-- FAVOURITE CSS -->
-    <link rel="stylesheet" href="/client/favourite/favourite.css" />
+    <link rel="stylesheet" href="./favourite.css" />
   </head>
   <body>
-    <div id="sidebar-placeholder" data-type="app" data-active="favourite"></div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="../../index.html" class="sidebar-link" title="Landing Page">
+          <img
+            src="../../assets/images/filmalisa.svg"
+            alt="Filmalisa Logo"
+            class="svg-logo"
+        /></a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="../home/home.html" class="sidebar-link" title="Home">
+          <img src="../../assets/icons/home.svg" alt="Home" class="svg-icon" />
+        </a>
+        <a
+          href="../search-panel/search.html"
+          class="sidebar-link"
+          title="Movies/Series"
+        >
+          <img src="../../assets/icons/search.svg" alt="Movies" class="svg-icon" />
+        </a>
+        <a href="../account/account.html" class="sidebar-link" title="Account">
+          <img
+            src="../../assets/icons/account.svg"
+            alt="Account"
+            class="svg-icon"
+          />
+        </a>
+        <a
+          href="../favourite/favourite.html"
+          class="sidebar-link active"
+          title="Favorites"
+        >
+          <img
+            src="../../assets/icons/favourite-active.svg"
+            alt="Favorites"
+            class="svg-icon"
+          />
+        </a>
+      </nav>
+    </aside>
 
     <!-- MAIN -->
     <main class="content">
@@ -31,7 +72,7 @@
         <h2 class="page-title">
           Favorite movies
           <img
-            src="/assets/icons/arrow.svg"
+            src="../../assets/icons/arrow.svg"
             alt="arrow"
             class="title-arrow"
           />
@@ -43,7 +84,6 @@
       </div>
     </main>
     <!-- FAVOURITE JS -->
-    <script src="/global/layout.js"></script>
-    <script src="/client/favourite/favourite.js"></script>
+    <script src="../favourite/favourite.js"></script>
   </body>
 </html>
