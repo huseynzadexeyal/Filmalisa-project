@@ -1,0 +1,215 @@
+@import url("/global/global.css");
+@import url("/global/admin-layout.css");
+
+/* ===========================================
+   MAIN CONTENT — bu səhifəyə xas hissə
+   =========================================== */
+.dashboard_content_hello {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 36px 116px 40px 0;
+}
+
+.dashboard_content_hello_1 p {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--db-text-secondary);
+}
+
+.dashboard_content_hello_1 h3 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--db-text-primary);
+  margin-top: 6px;
+}
+
+.dashboard_content_hello_2 {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dashboard_content_hello_2 img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.dashboard_content_hello_2 h3 {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--db-text-primary);
+}
+
+/* ===========================================
+   TABLE
+   =========================================== */
+.table_content {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table_content thead tr {
+  font-family: var(--db-font);
+  font-weight: 400;
+  font-size: 14px;
+  background-color: #1e1e1e;
+  color: var(--db-text-primary);
+  height: 50px;
+}
+
+.table_content tbody {
+  background-color: var(--db-text-primary);
+  color: #1d1d1d;
+}
+
+.table_content tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.table_content tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table_content th,
+.table_content td {
+  text-align: left;
+  vertical-align: middle;
+  padding: 14px 15px;
+}
+
+.table_content th:first-child,
+.table_content td:first-child {
+  text-align: center;
+}
+
+/* Şəkil və film adı olan xana */
+.cell-movie {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.cell-movie img {
+  width: 40px;
+  height: 56px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Uzun mətnləri məhdudlaşdırmaq üçün */
+.cell-comment {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.table-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-family: var(--db-font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.table-btn:hover {
+  opacity: 0.85;
+}
+
+.table-btn--delete {
+  background-color: #e04f4f;
+  color: var(--db-text-primary);
+}
+
+/* ===========================================
+   MODAL
+   =========================================== */
+.modalDiv {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modalDiv.active {
+  display: flex;
+}
+
+.modalContent {
+  background: #232028;
+  padding: 32px;
+  border-radius: 16px;
+  position: relative;
+  width: 400px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  color: var(--db-text-primary);
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  border: none;
+  background: none;
+  font-size: 26px;
+  color: var(--db-text-muted);
+  cursor: pointer;
+}
+
+.close:hover {
+  color: var(--db-text-primary);
+}
+
+.modal-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.modal-text {
+  font-size: 14px;
+  color: var(--db-text-muted);
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.category-form__submit {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: #3a3a55;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #e04f4f;
+  color: white;
+}

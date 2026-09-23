@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — Filmalisa Admin</title>
+    <link rel="stylesheet" href="/admin/contact/contact.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="dashboard">
+        <div id="sidebar-placeholder" data-type="admin" data-active="contact"></div>
+
+        <!-- Main content -->
+        <main class="dashboard_content">
+          <div class="dashboard_content_hello">
+            <div class="dashboard_content_hello_1">
+              <p>Hi Admin</p>
+              <h3>Contact Requests</h3>
+            </div>
+            <div class="dashboard_content_hello_2">
+              <img src="/assets/icons/Ellipse 6.svg" alt="" />
+              <h3>Admin</h3>
+            </div>
+          </div>
+
+          <table class="table_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="contactTableBody">
+              <!-- JS ilə doldurulacaq -->
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+
+    <!-- Təsdiq Modalı -->
+    <div class="modalDiv" id="deleteModal">
+      <div class="modalContent">
+        <button
+          class="close"
+          id="closeModalBtn"
+          type="button"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <div class="modal-body">
+          <h3 class="modal-title">Bu əlaqə müraciətini silmək istəyirsiniz?</h3>
+          <p class="modal-text">Bu əməliyyat geri qaytarıla bilməz.</p>
+          <div class="modal-actions">
+            <button
+              id="cancelDeleteBtn"
+              class="category-form__submit btn-cancel"
+              type="button"
+            >
+              Ləğv et
+            </button>
+            <button
+              id="confirmDeleteBtn"
+              class="category-form__submit btn-danger"
+              type="button"
+            >
+              Bəli, Sil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/global/layout.js"></script>
+    <script src="/admin/contact/contact.js"></script>
+  </body>
+</html>

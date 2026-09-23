@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>filmalisa - search panel</title>
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- SEARCH PANEL CSS -->
+    <link rel="stylesheet" href="/client/search-panel/search.css" />
+  </head>
+  <body>
+    <div id="sidebar-placeholder" data-type="app" data-active="search"></div>
+
+    <!-- MAIN -->
+    <main class="content">
+      <div class="search-header">
+        <h2 class="page-title">
+          Search result
+          <img src="/assets/icons/arrow.svg" alt="arrow" class="title-arrow" />
+        </h2>
+
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search..."
+          />
+          <button class="search-add-btn" id="searchBtn">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="movie-grid">
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/wonder-woman.svg"
+              alt="Wonder Woman 1984"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Wonder Woman 1984</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/justice-league.svg"
+              alt="Zack Snyder's Justice League"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Zack Snyder's Justice League</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/mortal-kombat.svg"
+              alt="Mortal Kombat"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Mortal Kombat</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/the-courier.svg"
+              alt="The Courier"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Drama</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">The Courier</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/wonder-woman.svg"
+              alt="Wonder Woman 1984"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Wonder Woman 1984</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/justice-league.svg"
+              alt="Zack Snyder's Justice League"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Zack Snyder's Justice League</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/mortal-kombat.svg"
+              alt="Mortal Kombat"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Mortal Kombat</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/the-courier.svg"
+              alt="The Courier"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Drama</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">The Courier</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/wonder-woman.svg"
+              alt="Wonder Woman 1984"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Wonder Woman 1984</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/justice-league.svg"
+              alt="Zack Snyder's Justice League"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Zack Snyder's Justice League</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/mortal-kombat.svg"
+              alt="Mortal Kombat"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Fantasy</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">Mortal Kombat</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="poster-wrap">
+            <img
+              src="/assets/images/the-courier.svg"
+              alt="The Courier"
+              class="poster"
+            />
+            <div class="poster-overlay">
+              <span class="category-tag">Drama</span>
+              <div class="rating">
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+                <img
+                  src="/assets/icons/star.svg"
+                  alt="star"
+                  class="star-icon"
+                />
+              </div>
+              <h3 class="movie-title">The Courier</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- SEARCH PANEL JS -->
+    <script src="/global/layout.js"></script>
+    <script src="/search-panel/search.js"></script>
+  </body>
+</html>

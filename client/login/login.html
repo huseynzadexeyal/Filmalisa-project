@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>filmalisa — login</title>
+    <link rel="stylesheet" href="/client/login/login.css" />
+  </head>
+  <body>
+    <main class="login-page">
+      <div class="login-page__container">
+        <div class="login-page__brand">
+          <img
+            src="/assets/images/filmalisa.svg"
+            alt=""
+            class="login-page__logo"
+          />
+          <h1 class="login-page__title">Filmalisa</h1>
+        </div>
+
+        <h2 class="login-page__subtitle">Login</h2>
+
+        <form class="login-form" action="#" method="post">
+          <div class="login-form__field">
+            <span
+              ><img
+                src="/assets/icons/login.svg"
+                alt=""
+                class="login-form__icon login-form__icon--mail"
+            /></span>
+            <input
+              class="login-form__input"
+              type="email"
+              name="email"
+              placeholder="Email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="login-form__field">
+            <span
+              ><img
+                src="/assets/icons/login2.svg"
+                alt=""
+                class="login-form__icon login-form__icon--lock"
+            /></span>
+            <input
+              class="login-form__input"
+              type="password"
+              name="password"
+              id="passwordInput"
+              placeholder="Password"
+              autocomplete="current-password"
+              required
+            />
+            <button
+              class="login-form__toggle"
+              type="button"
+              id="togglePassword"
+              aria-label="şifrəni göstər"
+            >
+              <img src="/assets/icons/passwordtog.svg" alt="" />
+            </button>
+          </div>
+          <div class="login-form__register-wrap">
+            <a
+              class="login-form__register"
+              href="/client/register/register.html"
+              >Register here</a
+            >
+          </div>
+          <button class="login-form__submit" type="submit">Login</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="/client/login/login.js"></script>
+  </body>
+</html>

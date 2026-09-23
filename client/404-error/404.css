@@ -1,0 +1,69 @@
+@import url(/global/global.css);
+@import url(/global/app-sidebar.css);
+
+body {
+  background-color: var(--background-color);
+  color: var(--white-color);
+  min-height: 100vh;
+}
+
+/* ===========================================
+   404 PAGE — LAYOUT
+   =========================================== */
+
+.app-layout {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 800px;
+  background-color: var(--background-color);
+  border-radius: var(--fs-s16);
+  overflow: hidden;
+}
+
+/* ===========================================
+   404 CONTENT
+   =========================================== */
+
+.content {
+  margin-left: 92px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 520px;
+}
+
+.not-found-img {
+  width: 320px;
+  margin-bottom: 40px;
+}
+
+.not-found-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.not-found-text {
+  color: var(--white-transparent-60);
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+
+.go-home-btn {
+  background-color: var(--button-color);
+  color: var(--white-color);
+  text-decoration: none;
+  padding: 14px 40px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
