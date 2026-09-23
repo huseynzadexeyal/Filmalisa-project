@@ -20,10 +20,59 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <!-- ACCOUNT CSS -->
-    <link rel="stylesheet" href="/client/account/account.css" />
+    <link rel="stylesheet" href="./account.css" />
   </head>
   <body>
-    <div id="sidebar-placeholder" data-type="app" data-active="account"></div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="../../index.html" class="sidebar-link" title="Landing Page">
+          <img
+            src="../../assets/images/filmalisa.svg"
+            alt="Filmalisa Logo"
+            class="svg-logo"
+        /></a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="../home/home.html" class="sidebar-link" title="Home">
+          <img src="../../assets/icons/home.svg" alt="Home" class="svg-icon" />
+        </a>
+        <a
+          href="../search-panel/search.html"
+          class="sidebar-link"
+          title="Movies/Series"
+        >
+          <img
+            src="../../assets/icons/search.svg"
+            alt="Movies"
+            class="svg-icon"
+          />
+        </a>
+        <a
+          href="../account/account.html"
+          class="sidebar-link active"
+          title="Account"
+        >
+          <img
+            src="../../assets/icons/account-active.svg"
+            alt="Account"
+            class="svg-icon active-icon"
+          />
+        </a>
+        <a
+          href="../favourite/favourite.html"
+          class="sidebar-link"
+          title="Favorites"
+        >
+          <img
+            src="../../assets/icons/favourite.svg"
+            alt="Favorites"
+            class="svg-icon"
+          />
+        </a>
+      </nav>
+    </aside>
 
     <!-- MAIN -->
     <main class="main-content">
@@ -48,13 +97,11 @@
         <div class="input-wrapper">
           <img src="/assets/icons/login2.svg" class="input-icon" alt="user" />
           <input type="text" id="username" placeholder="Profile manage url" />
-          <img src="/assets/icons/passwordtog.svg" class="action-icon" alt="toggle" />
         </div>
 
         <div class="input-wrapper">
           <img src="/assets/icons/login2.svg" class="input-icon" alt="user" />
           <input type="text" id="fullName" placeholder="Full Name" />
-          <img src="/assets/icons/passwordtog.svg" class="action-icon" alt="toggle" />
         </div>
 
         <div class="input-wrapper disabled-wrapper">
@@ -65,7 +112,11 @@
         <div class="input-wrapper">
           <img src="/assets/icons/login2.svg" class="input-icon" alt="lock" />
           <input type="password" id="password" placeholder="Password" />
-          <img src="/assets/icons/passwordtog.svg" class="action-icon" alt="toggle" />
+          <img
+            src="/assets/icons/passwordtog.svg"
+            class="action-icon"
+            alt="toggle"
+          />
         </div>
 
         <button type="submit" class="save-btn">Save</button>

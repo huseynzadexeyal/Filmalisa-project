@@ -16,16 +16,57 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="/client/404-error/404.css" />
+    <link rel="stylesheet" href="../404-error/404.css" />
   </head>
   <body>
-    <div id="sidebar-placeholder" data-type="app"></div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="../../index.html" class="sidebar-link" title="Landing Page">
+          <img
+            src="../../assets/images/filmalisa.svg"
+            alt="Filmalisa Logo"
+            class="svg-logo"
+        /></a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="../home/home.html" class="sidebar-link" title="Home">
+          <img src="../../assets/icons/home.svg" alt="Home" class="svg-icon" />
+        </a>
+        <a
+          href="../search-panel/search.html"
+          class="sidebar-link"
+          title="Movies/Series"
+        >
+          <img
+            src="../../assets/icons/search.svg"
+            alt="Movies"
+            class="svg-icon"
+          />
+        </a>
+        <a href="../account/account.html" class="sidebar-link" title="Account">
+          <img
+            src="../../assets/icons/account.svg"
+            alt="Account"
+            class="svg-icon"
+          />
+        </a>
+        <a href="#" class="sidebar-link" title="Favorites">
+          <img
+            src="../../assets/icons/favourite.svg"
+            alt="Favorites"
+            class="svg-icon"
+          />
+        </a>
+      </nav>
+    </aside>
 
     <!-- MAIN -->
     <main class="content">
       <div class="not-found">
         <img
-          src="/assets/images/404-error.svg"
+          src="../../assets/images/404-error.svg"
           alt="Lost"
           class="not-found-img"
         />
@@ -34,9 +75,8 @@
           Oops! This is awkward. You are looking for something that doesn't
           actually exist.
         </p>
-        <a href="/index.html" class="go-home-btn">Go Home</a>
+        <a href="../home/home.html" class="go-home-btn">Go Home</a>
       </div>
     </main>
-    <script src="/global/layout.js"></script>
   </body>
 </html>
