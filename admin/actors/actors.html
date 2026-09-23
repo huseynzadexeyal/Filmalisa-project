@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actors — Filmalisa Admin</title>
+    <link rel="stylesheet" href="/admin/actors/actors.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="dashboard">
+        <div id="sidebar-placeholder" data-type="admin" data-active="actors"></div>
+
+        <!-- Main content -->
+        <main class="dashboard_content">
+          <div class="dashboard_content_hello">
+            <div class="dashboard_content_hello_1">
+              <p>Hi Admin</p>
+              <h3>Actors</h3>
+            </div>
+            <div class="dashboard_content_hello_2">
+              <!-- Create Düyməsi -->
+              <button class="button" id="createActorBtn" type="button">
+                Create
+              </button>
+              <img src="/assets/icons/Ellipse 6.svg" alt="" />
+              <h3>Admin</h3>
+            </div>
+          </div>
+
+          <table class="table_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Photo & Name</th>
+                <th>Biography / Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="actorsTableBody">
+              <!-- JS ilə doldurulacaq -->
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+
+    <!-- Create / Edit Modal -->
+    <div class="modalDiv" id="actorModal">
+      <div class="modalContent">
+        <button
+          class="close"
+          id="closeModalBtn"
+          type="button"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+
+        <form id="actorForm" class="category-form">
+          <h3 class="modal-title" id="modalTitle">Create Actor</h3>
+
+          <input
+            class="category-form__input"
+            type="text"
+            id="actorName"
+            placeholder="Actor Name"
+            required
+          />
+          <input
+            class="category-form__input"
+            type="url"
+            id="actorImage"
+            placeholder="Image URL (e.g. https://...)"
+            required
+          />
+          <input
+            class="category-form__input"
+            type="text"
+            id="actorBio"
+            placeholder="Biography or Role"
+            required
+          />
+
+          <button class="category-form__submit" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="/global/layout.js"></script>
+    <script src="/admin/actors/actors.js"></script>
+  </body>
+</html>

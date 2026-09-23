@@ -1,0 +1,141 @@
+@import url("/global/global.css");
+@import url("/global/admin-layout.css");
+
+/* ===========================================
+   MAIN CONTENT — bu səhifəyə xas hissə
+   =========================================== */
+
+.dashboard_content_hello {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 36px 116px 40px 0;
+}
+
+.dashboard_content_hello_1 p {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--db-text-secondary);
+}
+
+.dashboard_content_hello_1 h3 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--db-text-primary);
+  margin-top: 6px;
+}
+
+.dashboard_content_hello_2 {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dashboard_content_hello_2 img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.dashboard_content_hello_2 h3 {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  color: var(--db-text-primary);
+}
+
+/* ===========================================
+   USERS TABLE
+   =========================================== */
+.table_content {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table_content thead tr {
+  font-family: var(--db-font);
+  font-weight: 400;
+  font-size: 14px;
+  background-color: #1e1e1e;
+  color: var(--db-text-primary);
+  height: 50px;
+}
+
+.table_content tbody {
+  background-color: var(--db-text-primary);
+  color: #1d1d1d; /* Text rəngi ağ fon üzərində oxunacaq şəkildə */
+}
+
+.table_content tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.table_content tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table_content tbody tr:hover {
+  background-color: #e8e0f2;
+}
+
+.table_content th,
+.table_content td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 14px 15px;
+}
+
+.cell-name {
+  font-weight: 600;
+}
+
+.table-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-family: var(--db-font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.table-btn:hover {
+  opacity: 0.85;
+}
+
+.table-btn--edit {
+  background-color: var(--db-button);
+  color: var(--db-text-primary);
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+@media only screen and (max-width: 1200px) {
+  .dashboard_content_hello {
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .dashboard_content_hello {
+    padding: 24px 16px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .table_content {
+    margin: 0 16px;
+    max-width: none;
+    display: block;
+    overflow-x: auto;
+  }
+}

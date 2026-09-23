@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users — Filmalisa Admin</title>
+    <link rel="stylesheet" href="/admin/users/users.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="dashboard">
+        <div id="sidebar-placeholder" data-type="admin" data-active="users"></div>
+
+        <!-- Main content -->
+        <main class="dashboard_content">
+          <div class="dashboard_content_hello">
+            <div class="dashboard_content_hello_1">
+              <p>Hi Admin</p>
+              <h3>Users</h3>
+            </div>
+            <div class="dashboard_content_hello_2">
+              <!-- Create düyməsi çıxarıldı -->
+              <img src="/assets/icons/Ellipse 6.svg" alt="" />
+              <h3>Admin</h3>
+            </div>
+          </div>
+
+          <table class="table_content">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <!-- Məlumatlar JS ilə gələcək -->
+            </tbody>
+          </table>
+        </main>
+      </div>
+    </div>
+
+    <script src="/global/layout.js"></script>
+    <script src="/admin/users/users.js"></script>
+  </body>
+</html>

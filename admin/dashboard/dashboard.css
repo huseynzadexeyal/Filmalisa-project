@@ -1,0 +1,119 @@
+@import url("/global/global.css");
+@import url("/global/admin-layout.css");
+
+/* ===========================================
+   MAIN CONTENT — bu səhifəyə xas hissə
+   =========================================== */
+.dashboard_content_hello {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 36px 116px 80px 0;
+}
+
+.dashboard_content_hello_1 p {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--db-text-secondary);
+}
+
+.dashboard_content_hello_1 h3 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--db-text-primary);
+  margin-top: 6px;
+}
+
+.dashboard_content_hello_2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dashboard_content_hello_2 img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.dashboard_content_hello_2 h3 {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  color: var(--db-text-primary);
+}
+
+/* ===========================================
+   CARDS
+   =========================================== */
+.dashboards_cards {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 20px;
+  padding-right: 77px;
+}
+
+.card {
+  height: 203px;
+  background-color: var(--db-sidebar-bg);
+  border-radius: var(--db-radius-card);
+  padding: 20px;
+  transition: background-color 0.2s ease;
+  color: var(--title-color);
+  border-radius: 30px;
+}
+
+.card:hover {
+  background-color: var(--db-accent-hover);
+  cursor: pointer;
+}
+
+.card p {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 0%;
+  color: var(--db-text-card-label);
+  padding-bottom: 8px;
+}
+
+.card h3 {
+  font-family: var(--db-font-number);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--db-text-primary);
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+@media only screen and (max-width: 1200px) {
+  .dashboards_cards {
+    grid-template-columns: repeat(3, 1fr);
+    padding-right: 24px;
+  }
+
+  .dashboard_content_hello {
+    padding-right: 24px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .dashboards_cards {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 16px;
+  }
+
+  .dashboard_content_hello {
+    padding: 24px 16px;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .dashboards_cards {
+    grid-template-columns: 1fr;
+  }
+}

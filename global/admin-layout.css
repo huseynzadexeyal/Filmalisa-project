@@ -1,0 +1,144 @@
+/* ===========================================
+   ADMIN PANEL — ORTAQ SHELL
+   dashboard, movies, categories, users, comments,
+   contact, actors səhifələrinin hamısında istifadə olunur.
+   Səhifəyə xas stillər (cədvəl, modal, kartlar və s.)
+   öz CSS faylında qalır.
+   =========================================== */
+
+body {
+  font-family: var(--db-font);
+  background-color: var(--db-bg);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.dashboard {
+  display: flex;
+  gap: 24px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar_menu {
+  width: var(--db-sidebar-width);
+  min-height: 100vh;
+  background-color: var(--db-sidebar-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 13px;
+  padding: 30px 0 30px 34px;
+}
+
+.sidebar_logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar_logo h4,
+.logo-title {
+  font-family: var(--db-font-logo);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--db-text-logo);
+}
+
+.sidebar_menu_nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 13px;
+  padding: 20px 13px 20px 40px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0%;
+  color: var(--db-text-muted);
+  text-decoration: none;
+  border-radius: var(--db-radius-link);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebar_link img {
+  width: 15px;
+  height: 15px;
+}
+
+.sidebar_link:hover,
+.sidebar_link.active {
+  background-color: var(--db-accent);
+  color: var(--db-text-primary);
+}
+
+.sidebar_link_logout {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: auto;
+  padding: 40px;
+  color: var(--db-text-faint);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sidebar_link_logout:hover {
+  color: var(--db-text-primary);
+}
+
+.sidebar_link_logout img {
+  width: 15px;
+  height: 15px;
+}
+
+/* ===== MAIN CONTENT BAZASI ===== */
+.dashboard_content {
+  background-color: var(--db-bg);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ===== RESPONSIVE SHELL ===== */
+@media only screen and (max-width: 900px) {
+  .dashboard {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar_menu {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .sidebar_menu_nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar_link {
+    padding: 14px 16px;
+    border-radius: 8px;
+  }
+
+  .sidebar_link_logout {
+    padding: 16px;
+  }
+}
