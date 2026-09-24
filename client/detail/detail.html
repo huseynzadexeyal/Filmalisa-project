@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>filmalisa - detail</title>
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- HOME CSS (sidebar + kart stilləri ortaqdır) -->
+    <link rel="stylesheet" href="../home/home.css" />
+    <!-- DETAIL CSS -->
+    <link rel="stylesheet" href="./detail.css" />
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <a href="../../index.html" class="sidebar-link" title="Landing Page">
+          <img
+            src="../../assets/images/filmalisa.svg"
+            alt="Filmalisa Logo"
+            class="svg-logo"
+        /></a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="../home/home.html" class="sidebar-link" title="Home">
+          <img src="../../assets/icons/home.svg" alt="Home" class="svg-icon" />
+        </a>
+        <a
+          href="../search-panel/search.html"
+          class="sidebar-link"
+          title="Movies/Series"
+        >
+          <img src="../../assets/icons/search.svg" alt="Movies" class="svg-icon" />
+        </a>
+        <a href="../account/account.html" class="sidebar-link" title="Account">
+          <img
+            src="../../assets/icons/account.svg"
+            alt="Account"
+            class="svg-icon"
+          />
+        </a>
+        <a
+          href="../favourite/favourite.html"
+          class="sidebar-link"
+          title="Favorites"
+        >
+          <img
+            src="../../assets/icons/favourite.svg"
+            alt="Favorites"
+            class="svg-icon"
+          />
+        </a>
+      </nav>
+    </aside>
+
+    <!-- COVER -->
+    <section class="detail-hero">
+      <img id="detailCover" class="detail-hero-bg" alt="" />
+      <div class="detail-hero-title">
+        <span id="detailCategory" class="category-tag"></span>
+        <h1 id="detailTitle"></h1>
+      </div>
+    </section>
+
+    <main class="detail-content">
+      <!-- INFO -->
+      <section class="detail-info">
+        <button
+          type="button"
+          class="detail-poster"
+          id="posterBtn"
+          aria-label="Open preview"
+        >
+          <img id="detailPoster" alt="" />
+          <span class="play-hover"><i class="bi bi-play-fill"></i></span>
+        </button>
+
+        <div class="detail-text">
+          <div class="detail-headline">
+            <h2 id="detailHeadline"></h2>
+            <a
+              id="watchLink"
+              class="watch-badge"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Watch link</a
+            >
+            <button
+              type="button"
+              id="favBtn"
+              class="fav-btn"
+              aria-label="Add to favourites"
+              title="Add to favourites"
+            >
+              <i class="bi bi-plus-lg"></i>
+            </button>
+          </div>
+
+          <p id="detailDesc" class="detail-desc"></p>
+          <span class="detail-rating"
+            ><i class="bi bi-star-fill"></i> <span id="detailRating"></span
+          ></span>
+
+          <dl class="detail-meta">
+            <div><dt>Type</dt><dd id="metaType"></dd></div>
+            <div><dt>Status</dt><dd id="metaStatus"></dd></div>
+            <div><dt>No. of episodes</dt><dd id="metaEpisodes"></dd></div>
+            <div><dt>First air date</dt><dd id="metaFirst"></dd></div>
+            <div><dt>Last air date</dt><dd id="metaLast"></dd></div>
+            <div><dt>Episode run time</dt><dd id="metaRuntime"></dd></div>
+            <div class="wide"><dt>Genres</dt><dd id="metaGenres"></dd></div>
+          </dl>
+
+          <h3 class="detail-sub">Top cast</h3>
+          <div class="detail-cast" id="castList"></div>
+        </div>
+      </section>
+
+      <!-- COMMENTS -->
+      <section class="detail-comments">
+        <form id="commentForm" class="comment-form">
+          <input
+            id="commentInput"
+            type="text"
+            placeholder="Add comment..."
+            maxlength="300"
+            autocomplete="off"
+          />
+          <button type="submit" aria-label="Send comment">
+            <i class="bi bi-send-fill"></i>
+          </button>
+        </form>
+        <div id="commentList"></div>
+      </section>
+
+      <!-- SIMILAR -->
+      <section class="movie-row">
+        <div class="row-header">
+          <h2 class="row-title">
+            Similar movies
+            <img
+              src="../../assets/icons/arrow.svg"
+              alt="arrow"
+              class="title-arrow"
+            />
+          </h2>
+        </div>
+        <div class="movie-scroll movie-scroll-large" id="similarList"></div>
+      </section>
+    </main>
+
+    <!-- PREVIEW MODAL -->
+    <div class="detail-modal" id="modal" hidden>
+      <div class="detail-modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button type="button" class="detail-modal-close" id="modalClose" aria-label="Close">
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <img id="modalCover" alt="" />
+        <div class="detail-modal-info">
+          <h3 id="modalTitle"></h3>
+          <a
+            id="modalWatch"
+            class="play-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><i class="bi bi-play-fill"></i> Play</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="../../global/movies-data.js"></script>
+    <script src="./detail.js"></script>
+  </body>
+</html>

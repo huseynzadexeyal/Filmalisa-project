@@ -1,7 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
-@import url(/global/reset.css);
-@import url(/global/variables.css);
+@import url(./reset.css);
+@import url(./variables.css);
 
 body {
   font-family: var(--font-primary);
+}
+
+/* ===========================================
+   MOVIE CARD — ortaq hover (play ikonu)
+   home, search, favourite, detail
+   =========================================== */
+
+.movie-card.is-link {
+  cursor: pointer;
+}
+
+.movie-card.is-link:focus-visible {
+  outline: 2px solid #0feffd;
+  outline-offset: 4px;
+  border-radius: 16px;
+}
+
+.play-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.play-hover i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  padding-left: 4px;
+  font-size: 40px;
+  color: #000;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.movie-card:hover .play-hover,
+.movie-card:focus-visible .play-hover {
+  opacity: 1;
 }

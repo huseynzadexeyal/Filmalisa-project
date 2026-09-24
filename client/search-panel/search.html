@@ -23,9 +23,6 @@
     <link rel="stylesheet" href="./search.css" />
   </head>
   <body>
-<<<<<<< Updated upstream:client/search-panel/search.html
-    <div id="sidebar-placeholder" data-type="app" data-active="search"></div>
-=======
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo">
@@ -72,7 +69,6 @@
         </a>
       </nav>
     </aside>
->>>>>>> Stashed changes:search-panel/search.html
 
     <!-- MAIN -->
     <main class="content">
@@ -240,7 +236,7 @@
                   class="star-icon"
                 />
                 <img
-                  src="/assets/icons/star.svg"
+                  src="../../assets/icons/star.svg"
                   alt="star"
                   class="star-icon"
                 />
@@ -590,7 +586,11 @@
       </div>
     </main>
     <!-- SEARCH PANEL JS -->
+    <script src="../../global/movies-data.js"></script>
     <script src="../../global/layout.js"></script>
     <script src="../search-panel/search.js"></script>
+    <script>
+      initMovieCards();
+    </script>
   </body>
 </html>
