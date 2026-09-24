@@ -1,4 +1,4 @@
-@import url(/global/global.css);
+@import url(../global/global.css);
 
 /* --- ƏSAS LAYOUT TƏNZİMLƏMƏLƏRİ --- */
 body {
@@ -20,7 +20,7 @@ body {
 .landing-page {
   position: relative;
   box-sizing: border-box;
-  background-image: url("/assets/images/backgroundimg.jpg");
+  background-image: url("../assets/images/backgroundimg.jpg");
   background-size: cover;
   background-position: center;
   background-color: #000000;
