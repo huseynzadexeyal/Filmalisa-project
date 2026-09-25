@@ -128,33 +128,38 @@
 }
 
 .table-btn {
+  width: 32px;
+  height: 32px;
   border: none;
-  border-radius: 4px;
-  padding: 6px 14px;
-  font-family: var(--db-font);
-  font-size: 13px;
-  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.table-btn:hover {
-  opacity: 0.85;
-}
-
-.table-btn--edit {
-  background-color: var(--db-button);
-  color: var(--db-text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
   margin-right: 6px;
 }
 
+.table-btn--edit {
+  background-color: rgba(74, 158, 255, 0.15);
+  color: #4a9eff;
+}
+
+.table-btn--edit:hover {
+  background-color: rgba(74, 158, 255, 0.3);
+}
+
 .table-btn--delete {
-  background-color: #e04f4f;
-  color: var(--db-text-primary);
+  background-color: rgba(255, 80, 80, 0.15);
+  color: #ff5050;
+}
+
+.table-btn--delete:hover {
+  background-color: rgba(255, 80, 80, 0.3);
 }
 
 /* ===========================================
-   MODAL — create / edit movie
+   MODAL — create / edit / delete movie
    =========================================== */
 .modalDiv {
   display: none;
@@ -181,6 +186,13 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  color: var(--db-text-primary);
+}
+
+/* Silme Modalı İçin Özel Genişlik */
+.modalContent--small {
+  width: 400px;
+  overflow-y: visible;
 }
 
 .close {
@@ -200,6 +212,53 @@
   color: var(--db-text-primary);
 }
 
+/* Silme Modalı Metin ve Butonları */
+.modal-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.modal-text {
+  font-size: 14px;
+  color: var(--db-text-muted);
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.category-form__submit {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel {
+  background-color: #3a3a55;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #4a4a6a;
+}
+
+.btn-danger {
+  background-color: #e04f4f;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c94646;
+}
+
+/* Form Alanları (Create/Edit) */
 .movie-form {
   display: flex;
   gap: 40px;

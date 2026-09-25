@@ -7,10 +7,9 @@ body {
   background-color: #000000;
 }
 
-.wrapper-1440 {
-  max-width: 1440px;
+.wrapper {
+  max-width: 100%;
   width: 100%;
-  margin: 0 auto;
   background-color: #000000;
   position: relative;
   overflow-x: hidden;
@@ -20,7 +19,14 @@ body {
 .landing-page {
   position: relative;
   box-sizing: border-box;
-  background-image: url("../assets/images/backgroundimg.jpg");
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("../assets/images/backgroundimg.jpg");
   background-size: cover;
   background-position: center;
   background-color: #000000;
@@ -169,7 +175,6 @@ body {
 .landing-tv {
   width: 100%;
   background-color: #000000;
-  border-top: 8px solid #232326;
   box-sizing: border-box;
   padding: 100px 48px;
   display: flex;
@@ -484,11 +489,13 @@ details[open] .landing-faq__question::after {
 }
 
 .landing-faq__answer {
-  padding: 0 24px 24px 24px;
+  background-color: #282828;
+  padding: 24px;
   font-size: var(--fs-s20);
   line-height: 1.5;
   color: #d4d4d8;
 }
+
 /* --- FOOTER BÖLMƏSİ --- */
 .landing-footer {
   width: 100%;

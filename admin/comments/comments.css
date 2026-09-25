@@ -87,11 +87,12 @@
 }
 
 .table_content th:first-child,
-.table_content td:first-child {
+.table_content td:first-child,
+.table_content th:last-child,
+.table_content td:last-child {
   text-align: center;
 }
 
-/* Şəkil və film adı olan xana */
 .cell-movie {
   display: flex;
   align-items: center;
@@ -106,7 +107,6 @@
   object-fit: cover;
 }
 
-/* Uzun mətnləri məhdudlaşdırmaq üçün */
 .cell-comment {
   max-width: 300px;
   white-space: nowrap;
@@ -116,23 +116,33 @@
 }
 
 .table-btn {
+  width: 32px;
+  height: 32px;
   border: none;
-  border-radius: 4px;
-  padding: 6px 14px;
-  font-family: var(--db-font);
-  font-size: 13px;
-  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }
 
-.table-btn:hover {
-  opacity: 0.85;
+.table-btn--edit {
+  background-color: rgba(74, 158, 255, 0.15);
+  color: #4a9eff;
+}
+
+.table-btn--edit:hover {
+  background-color: rgba(74, 158, 255, 0.3);
 }
 
 .table-btn--delete {
-  background-color: #e04f4f;
-  color: var(--db-text-primary);
+  background-color: rgba(255, 80, 80, 0.15);
+  color: #ff5050;
+}
+
+.table-btn--delete:hover {
+  background-color: rgba(255, 80, 80, 0.3);
 }
 
 /* ===========================================

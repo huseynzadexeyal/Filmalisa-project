@@ -23,26 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <td class="cell-name">${user.name}</td>
         <td>${user.email}</td>
         <td>${user.role}</td>
-        <td>
-          <!-- Sil (Trash) ikonu tələbə əsasən yoxdur -->
-          <button class="table-btn table-btn--edit" type="button">Edit</button>
-        </td>
       `;
       tableBody.appendChild(row);
     });
   }
 
   renderUsers(mockUsers);
-
-  tableBody.addEventListener("click", (e) => {
-    const row = e.target.closest("tr");
-    if (!row) return;
-
-    if (e.target.classList.contains("table-btn--edit")) {
-      const name = row.querySelector(".cell-name").textContent;
-      console.log(`Editing user: ${name}`);
-      alert(`Seçilən istifadəçi: ${name} (Edit məntiqi bura yazılacaq)`);
-    }
-  });
 });
-
