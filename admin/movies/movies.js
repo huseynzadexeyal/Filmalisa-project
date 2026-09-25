@@ -22,6 +22,13 @@ function setupMovieModal() {
   const adultInput = document.querySelector("#movieAdult");
   const previewImg = document.querySelector("#moviePreviewImg");
 
+  // --- Silme Modalı İçin Gerekli Değişkenler ---
+  const deleteModal = document.querySelector("#deleteModal");
+  const closeDeleteBtn = document.querySelector("#closeDeleteModalBtn");
+  const cancelDeleteBtn = document.querySelector("#cancelDeleteBtn");
+  const confirmDeleteBtn = document.querySelector("#confirmDeleteBtn");
+  let rowToDelete = null;
+
   const placeholderPoster =
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='296' viewBox='0 0 200 296'%3E%3Crect width='200' height='296' rx='10' fill='%231c1c24'/%3E%3Cpath d='M70 118h60v60H70z' fill='%232c2c3a'/%3E%3C/svg%3E";
 
@@ -58,9 +65,31 @@ function setupMovieModal() {
     updatePreview();
   }
 
+  // --- Silme Modalı Fonksiyonları ---
+  function closeDeleteModal() {
+    deleteModal.classList.remove("active");
+    rowToDelete = null;
+  }
+
+  closeDeleteBtn.addEventListener("click", closeDeleteModal);
+  cancelDeleteBtn.addEventListener("click", closeDeleteModal);
+
+  confirmDeleteBtn.addEventListener("click", () => {
+    if (rowToDelete) {
+      rowToDelete.remove();
+      closeDeleteModal();
+    }
+  });
+
+  // Silme modalını dışarı tıklayarak kapatma
+  deleteModal.addEventListener("click", (e) => {
+    if (e.target === deleteModal) closeDeleteModal();
+  });
+  // ------------------------------------
+
   function nextId() {
-    const ids = [...tableBody.querySelectorAll("tr")].map((row) =>
-      Number(row.dataset.id) || 0
+    const ids = [...tableBody.querySelectorAll("tr")].map(
+      (row) => Number(row.dataset.id) || 0,
     );
     return ids.length ? Math.max(...ids) + 1 : 1;
   }
@@ -84,8 +113,12 @@ function setupMovieModal() {
       <td class="cell-category">${data.category}</td>
       <td class="cell-imdb">${data.imdb}</td>
       <td>
-        <button class="table-btn table-btn--edit" type="button">Edit</button>
-        <button class="table-btn table-btn--delete" type="button">Delete</button>
+        <button class="table-btn table-btn--edit" type="button" title="Edit">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="table-btn table-btn--delete" type="button" title="Delete">
+          <i class="fa-solid fa-trash"></i>
+        </button>
       </td>
     `;
     applyExtraData(row, data);
@@ -96,30 +129,39 @@ function setupMovieModal() {
   closeBtn.addEventListener("click", closeModal);
   coverInput.addEventListener("input", updatePreview);
 
-  // Close when clicking the dark overlay (not the modal box itself)
+  // Düzenleme/Ekleme modalını dışarı tıklayarak kapatma
   modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
   });
 
-  // Close on Escape
+  // Close on Escape (Her iki modal için de geçerli kıldım)
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
+    if (e.key === "Escape") {
+      if (modal.classList.contains("active")) closeModal();
+      if (deleteModal.classList.contains("active")) closeDeleteModal();
+    }
   });
 
   // Edit / Delete — delegated so it also works for rows added later
   tableBody.addEventListener("click", (e) => {
+    //closest kullanarak butona tıklanmasını garantiye alıyoruz (ikonlara tıklanma sorununu çözer)
+    const editBtn = e.target.closest(".table-btn--edit");
+    const deleteBtn = e.target.closest(".table-btn--delete");
     const row = e.target.closest("tr");
+
     if (!row) return;
 
-    if (e.target.classList.contains("table-btn--edit")) {
+    if (editBtn) {
       openModal("edit", row);
     }
 
-    if (e.target.classList.contains("table-btn--delete")) {
-      const title = row.querySelector(".cell-title").textContent;
-      if (window.confirm(`"${title}" filmini silmək istədiyinizə əminsiniz?`)) {
-        row.remove();
-      }
+    if (deleteBtn) {
+      rowToDelete = row;
+      // İstersen silinecek filmin ismini modal'a yazdırabilirsin:
+      // const title = row.querySelector(".cell-title").textContent;
+      // deleteModal.querySelector(".modal-title").textContent = `Delete "${title}"?`;
+
+      deleteModal.classList.add("active");
     }
   });
 
@@ -145,7 +187,8 @@ function setupMovieModal() {
       editingRow.querySelector(".cell-overview").textContent = data.overview;
       editingRow.querySelector(".cell-category").textContent = data.category;
       editingRow.querySelector(".cell-imdb").textContent = data.imdb;
-      editingRow.querySelector(".poster-thumb").src = data.cover || placeholderPoster;
+      editingRow.querySelector(".poster-thumb").src =
+        data.cover || placeholderPoster;
       applyExtraData(editingRow, data);
     } else {
       const row = buildRow(nextId(), data);

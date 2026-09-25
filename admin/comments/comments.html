@@ -5,11 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Comments — Filmalisa Admin</title>
     <link rel="stylesheet" href="./comments.css" />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="container">
       <div class="dashboard">
-        <div id="sidebar-placeholder" data-type="admin" data-active="comments"></div>
+        <div
+          id="sidebar-placeholder"
+          data-type="admin"
+          data-active="comments"
+        ></div>
 
         <!-- Main content -->
         <main class="dashboard_content">
@@ -34,14 +43,63 @@
               </tr>
             </thead>
             <tbody id="commentsTableBody">
-              <!-- JS ilə doldurulacaq -->
+              <tr data-id="1">
+                <td>1</td>
+                <td>
+                  <div class="cell-movie">
+                    <img
+                      src="../../assets/images/wonder-woman.svg"
+                      alt="Wonder Woman poster"
+                    />
+                    <span>Wonder Woman</span>
+                  </div>
+                </td>
+                <td class="cell-comment">
+                  Bu film həyatımı dəyişdi, vizuallar möhtəşəmdir! Çox qarışıq
+                  idi amma yenə də bəyəndim.
+                </td>
+                <td>
+                  <button
+                    class="table-btn table-btn--delete"
+                    type="button"
+                    title="Delete"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-id="2">
+                <td>2</td>
+                <td>
+                  <div class="cell-movie">
+                    <img
+                      src="../../assets/images/lost-in-space-poster.svg"
+                      alt="Lost in Space poster"
+                    />
+                    <span>Lost in Space</span>
+                  </div>
+                </td>
+                <td class="cell-comment">
+                  Hans Zimmer musiqiləri bir başqadır. Çox təsirləndim.
+                </td>
+                <td>
+                  <button
+                    class="table-btn table-btn--delete"
+                    type="button"
+                    title="Delete"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </main>
       </div>
     </div>
 
-    <!-- Təsdiq Modalı -->
+    <!-- Confirmation Modal -->
     <div class="modalDiv" id="deleteModal">
       <div class="modalContent modalContent--small">
         <button
@@ -53,24 +111,22 @@
           &times;
         </button>
         <div class="modal-body">
-          <h3 class="modal-title">Bu rəyi silmək istədiyinizə əminsiniz?</h3>
-          <p class="modal-text">
-            Silindikdən sonra bu əməliyyatı geri qaytarmaq mümkün deyil.
-          </p>
+          <h3 class="modal-title"></h3>
+          <p class="modal-text">This action cannot be undone after deletion.</p>
           <div class="modal-actions">
             <button
               id="cancelDeleteBtn"
               class="category-form__submit btn-cancel"
               type="button"
             >
-              Ləğv et
+              Cancel
             </button>
             <button
               id="confirmDeleteBtn"
               class="category-form__submit btn-danger"
               type="button"
             >
-              Bəli, Sil
+              Yes, Delete
             </button>
           </div>
         </div>

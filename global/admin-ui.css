@@ -1,0 +1,219 @@
+/* ===========================================
+   ADMIN UI — modal və hover cilası
+   Hər admin səhifəsinin öz CSS-indən SONRA yüklənir
+   (dashboard, movies, categories, actors, users, comments, contact)
+   =========================================== */
+
+/* ---------- MODAL ---------- */
+.modalDiv {
+  background: rgba(8, 8, 12, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.modalDiv.active {
+  animation: modal-fade 0.18s ease-out;
+}
+
+.modalDiv.active .modalContent {
+  animation: modal-pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+/* X düyməsi inputların ÜSTÜNDƏ: yuxarıda ayrıca zolaq açırıq */
+.modalContent {
+  padding: 60px 32px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.close {
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 22px;
+  z-index: 2;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--db-text-primary);
+  transform: rotate(90deg);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--db-button);
+  outline-offset: 2px;
+}
+
+.category-form {
+  gap: 20px;
+}
+
+.modal-title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--db-text-primary);
+}
+
+/* Təsdiq modalı (comments, contact) */
+.modal-body {
+  text-align: center;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-actions .category-form__submit {
+  flex: 1;
+}
+
+/* ---------- INPUT hover / focus ---------- */
+.category-form__input:hover,
+.movie-form__input:hover {
+  border-color: #52527a;
+}
+
+.category-form__input:focus,
+.movie-form__input:focus {
+  border-color: #8b7bf0;
+}
+
+/* ---------- DÜYMƏLƏR ---------- */
+.dashboard_content_hello_2 .button,
+.category-form__submit,
+.movie-form__submit,
+.table-btn {
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease,
+    filter 0.2s ease;
+}
+
+.dashboard_content_hello_2 .button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(155, 81, 224, 0.35);
+}
+
+.category-form__submit:hover,
+.movie-form__submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(155, 81, 224, 0.35);
+}
+
+.category-form__submit:active,
+.movie-form__submit:active,
+.dashboard_content_hello_2 .button:active,
+.table-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+.table-btn:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  filter: brightness(1.12);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn-cancel:hover {
+  background-color: #3a3a46;
+  box-shadow: none;
+}
+
+.btn-danger:hover {
+  background-color: #ef4444;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35);
+}
+
+button:focus-visible,
+.table-btn:focus-visible {
+  outline: 2px solid var(--db-button);
+  outline-offset: 2px;
+}
+
+/* ---------- CƏDVƏL ---------- */
+.table_content tbody tr:hover {
+  background-color: #ece4f6;
+}
+
+.table_content tbody tr:hover td:first-child {
+  box-shadow: inset 3px 0 0 var(--db-button);
+}
+
+.poster-thumb,
+.cell-movie img,
+.cell-profile img {
+  transition: transform 0.2s ease;
+}
+
+tr:hover .poster-thumb,
+tr:hover .cell-movie img,
+tr:hover .cell-profile img {
+  transform: scale(1.06);
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar_link {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.sidebar_link:hover:not(.active) {
+  padding-left: 46px;
+}
+
+.sidebar_link_logout:hover {
+  color: #f87171;
+}
+
+/* ---------- DASHBOARD KARTLARI ---------- */
+.card {
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modalDiv.active,
+  .modalDiv.active .modalContent {
+    animation: none;
+  }
+
+  .close:hover,
+  .card:hover,
+  .table-btn:hover {
+    transform: none;
+  }
+}

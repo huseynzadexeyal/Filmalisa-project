@@ -16,22 +16,6 @@ function setupActorsCRUD() {
 
   let editingRow = null;
 
-  // Başlanğıc datalar
-  const mockActors = [
-    {
-      id: 1,
-      name: "Cillian Murphy",
-      image: "https://via.placeholder.com/48/1c1c24/ffffff?text=CM",
-      bio: "Oppenheimer, Peaky Blinders",
-    },
-    {
-      id: 2,
-      name: "Leonardo DiCaprio",
-      image: "https://via.placeholder.com/48/1c1c24/ffffff?text=LD",
-      bio: "Inception, The Wolf of Wall Street",
-    },
-  ];
-
   function buildRow(id, name, image, bio) {
     const row = document.createElement("tr");
     row.dataset.id = id;
@@ -45,23 +29,16 @@ function setupActorsCRUD() {
       </td>
       <td class="cell-bio">${bio}</td>
       <td>
-        <button class="table-btn table-btn--edit" type="button">Edit</button>
-        <button class="table-btn table-btn--delete" type="button">Delete</button>
+        <button class="table-btn table-btn--edit" type="button" title="Edit">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="table-btn table-btn--delete" type="button" title="Delete">
+          <i class="fa-solid fa-trash"></i>
+        </button>
       </td>
     `;
     return row;
   }
-
-  function renderInitialActors() {
-    tableBody.innerHTML = "";
-    mockActors.forEach((actor) => {
-      tableBody.appendChild(
-        buildRow(actor.id, actor.name, actor.image, actor.bio),
-      );
-    });
-  }
-
-  renderInitialActors();
 
   function nextId() {
     const ids = [...tableBody.querySelectorAll("tr")].map(
@@ -103,11 +80,11 @@ function setupActorsCRUD() {
     const row = e.target.closest("tr");
     if (!row) return;
 
-    if (e.target.classList.contains("table-btn--edit")) {
+    if (e.target.closest(".table-btn--edit")) {
       openModal("edit", row);
     }
 
-    if (e.target.classList.contains("table-btn--delete")) {
+    if (e.target.closest(".table-btn--delete")) {
       const name = row.querySelector(".cell-name").textContent;
       if (
         window.confirm(`"${name}" adlı aktyoru silmək istədiyinizə əminsiniz?`)

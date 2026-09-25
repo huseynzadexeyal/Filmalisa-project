@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Actors — Filmalisa Admin</title>
     <link rel="stylesheet" href="./actors.css" />
+    <link rel="stylesheet" href="./actors.css" />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="container">
       <div class="dashboard">
-        <div id="sidebar-placeholder" data-type="admin" data-active="actors"></div>
+        <div
+          id="sidebar-placeholder"
+          data-type="admin"
+          data-active="actors"
+        ></div>
 
         <!-- Main content -->
         <main class="dashboard_content">
@@ -38,7 +48,65 @@
               </tr>
             </thead>
             <tbody id="actorsTableBody">
-              <!-- JS ilə doldurulacaq -->
+              <tr data-id="1">
+                <td>1</td>
+                <td>
+                  <div class="cell-profile">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3pg1oEIKiw_3odQPBONwOt-FfQiI8mRMuIMELt9lQEtuisjibig5nKHw&s=10"
+                      alt="Cillian Murphy"
+                    />
+                    <span class="cell-name">Cillian Murphy</span>
+                  </div>
+                </td>
+                <td class="cell-bio">Oppenheimer, Peaky Blinders</td>
+                <td>
+                  <button
+                    class="table-btn table-btn--edit"
+                    type="button"
+                    title="Edit"
+                  >
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button
+                    class="table-btn table-btn--delete"
+                    type="button"
+                    title="Delete"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-id="2">
+                <td>2</td>
+                <td>
+                  <div class="cell-profile">
+                    <img
+                      src="https://assets.vogue.com/photos/6731346474f550dffdc2b1d5/1:1/w_1410,h_1410,c_limit/GettyImages-596304914.jpg"
+                      alt="Leonardo DiCaprio"
+                    />
+                    <span class="cell-name">Leonardo DiCaprio</span>
+                  </div>
+                </td>
+                <td class="cell-bio">Inception, The Wolf of Wall Street</td>
+                <td>
+                  <button
+                    class="table-btn table-btn--edit"
+                    type="button"
+                    title="Edit"
+                  >
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button
+                    class="table-btn table-btn--delete"
+                    type="button"
+                    title="Delete"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </main>
