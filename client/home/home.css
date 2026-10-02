@@ -112,15 +112,12 @@ body {
   display: block;
 }
 
-/* Mətn oxunaqlı qalsın deyə şəkil üzərində qradiyent:
-   solda tünd (mətn tərəfi), aşağıda səhifə fonuna qarışır */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  /* Aşağı qradiyent ƏN ÜSTDƏ: alt kənar səhifə fonu ilə tam eyni rəngdə bitir (tikiş görünmür) */
   background:
     linear-gradient(0deg, var(--background-color) 0%, transparent 30%),
     linear-gradient(
@@ -167,9 +164,9 @@ body {
 }
 
 /* ===========================================
-   WATCH NOW — şüşə effektli, neon qradiyent kənarlı düymə
-   (həm masaüstü, həm mobil üçün eyni)
+   WATCH NOW BUTTON
    =========================================== */
+
 .watch-now-btn {
   --wn-gradient: linear-gradient(
     100deg,
@@ -194,7 +191,6 @@ body {
   letter-spacing: 0.03em;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   cursor: pointer;
-  /* yüngül şüşə effekti: hero şəkli görünür, amma yazı aydın oxunur */
   background: rgba(8, 8, 16, 0.38) !important;
   -webkit-backdrop-filter: blur(8px) saturate(1.2);
   backdrop-filter: blur(8px) saturate(1.2);
@@ -209,7 +205,6 @@ body {
     filter 0.2s ease;
 }
 
-/* neon qradiyent kənar */
 .watch-now-btn::after {
   content: "";
   position: absolute;
@@ -228,7 +223,6 @@ body {
   pointer-events: none;
 }
 
-/* qradiyent Play ikonu */
 .watch-now-btn::before {
   content: "";
   flex: none;
@@ -313,8 +307,6 @@ body {
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  /* Hover-də qalxan kart və parıltı overflow tərəfindən kəsilməsin;
-     mənfi margin düzülüşü əvvəlki kimi saxlayır */
   padding-top: 14px;
   padding-bottom: 22px;
   margin-top: -14px;
@@ -394,7 +386,7 @@ body {
   cursor: pointer;
   font: inherit;
 }
-/* Logout: aktiv ikonlar kimi yaşıl neon (#0FEFFD kontur + yaşıl parıltı) */
+
 .sidebar-link.sidebar-logout .svg-icon {
   opacity: 1;
   filter: drop-shadow(0 0 10px var(--success-transparent-50));
@@ -406,7 +398,7 @@ body {
 }
 
 /* ===========================================
-   MOVIE SLIDER (scrollbar əvəzinə ox düymələri + drag/swipe)
+   MOVIE SLIDER
    =========================================== */
 
 .movie-slider {
@@ -473,7 +465,6 @@ body {
   transition: transform 0.15s ease;
 }
 
-/* Touch cihazlarda ox lazım deyil — swipe işləyir */
 @media (hover: none) {
   .slider-btn {
     display: none;
@@ -481,13 +472,13 @@ body {
 }
 
 /* ===========================================
-   HERO SLIDESHOW (3-4 film avtomatik dəyişir)
+   HERO SLIDESHOW
    =========================================== */
 
 .hero-slides {
   position: absolute;
   inset: 0;
-  animation: heroIn 0.9s ease both; /* səhifə açılanda hero yumşaq görünür */
+  animation: heroIn 0.9s ease both;
 }
 
 @keyframes heroIn {
@@ -499,7 +490,6 @@ body {
   }
 }
 
-/* Yumşaq crossfade */
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -511,9 +501,6 @@ body {
   opacity: 1;
 }
 
-/* Yüngül Ken Burns: aktiv slayd yavaş-yavaş 1.05 → 1 olur (az böyütmə = şəkil aydın qalır).
-   Slayd solub görünməz olandan SONRA (1s gecikmə) zoom səssizcə sıfırlanır,
-   ona görə solarkən geriyə "tullanma" olmur. */
 .hero-slide .hero-bg {
   transform: scale(1.05);
   transform-origin: 30% 40%;
@@ -521,7 +508,7 @@ body {
 }
 
 .hero-slide:nth-child(even) .hero-bg {
-  transform-origin: 70% 55%; /* slaydlar eyni nöqtəyə yaxınlaşmasın */
+  transform-origin: 70% 55%;
 }
 
 .hero-slide.is-active .hero-bg {
@@ -530,8 +517,6 @@ body {
     cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* Mətn: dəyişəndə tez solur, yeni mətn isə element-element (stagger) yuxarı qalxır.
-   "translate" istifadə olunur ki, düymənin hover "transform: scale"-i ilə toqquşmasın. */
 .hero-overlay {
   z-index: 2;
 }
@@ -586,4 +571,29 @@ body {
   .hero-slide.is-active .hero-bg {
     transform: none;
   }
+}
+
+/* ===========================================
+   MOBİL ÜST BAR (M-TOPBAR) MAVİ RENK DÜZELTMESİ
+   =========================================== */
+
+.m-topbar__nav a {
+  color: var(--neon-color) !important;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.m-topbar__nav a i {
+  color: var(--neon-color) !important;
+  font-size: 11px;
+}
+
+.m-topbar__nav a:hover,
+.m-topbar__nav a:focus,
+.m-topbar__nav a:active {
+  color: var(--neon-color) !important;
+  opacity: 0.8;
 }
