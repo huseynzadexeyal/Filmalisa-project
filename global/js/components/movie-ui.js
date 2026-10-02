@@ -9,7 +9,6 @@ const FALLBACK_IMG =
     "<svg xmlns='http://www.w3.org/2000/svg' width='292' height='440'><rect width='292' height='440' fill='#1c1c24'/><path d='M116 200h60v60h-60z' fill='#2c2c3a'/></svg>",
   );
 
-
 /* ===========================================
    FRAGMAN KÖMƏKÇİLƏRİ (kart hover önizləməsi + detail modalı ortaq istifadə edir)
    =========================================== */
@@ -20,7 +19,8 @@ function getTrailerSource(url) {
   if (typeof url !== "string" || !url.trim()) return null;
   const value = url.trim();
 
-  if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(value)) return { type: "file", src: value };
+  if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(value))
+    return { type: "file", src: value };
 
   let parsed;
   try {
@@ -36,7 +36,9 @@ function getTrailerSource(url) {
     id = parsed.pathname.slice(1);
   } else if (host === "youtube.com" || host === "youtube-nocookie.com") {
     if (parsed.pathname === "/watch") id = parsed.searchParams.get("v");
-    else id = (parsed.pathname.match(/^\/(?:embed|shorts|v)\/([\w-]{11})/) || [])[1];
+    else
+      id = (parsed.pathname.match(/^\/(?:embed|shorts|v)\/([\w-]{11})/) ||
+        [])[1];
   }
 
   if (!id || !/^[\w-]{11}$/.test(id)) return null;
@@ -72,7 +74,11 @@ const canPreview =
 /* YouTube ilə TCP/TLS əlaqəsini əvvəlcədən qurur → ilk hover-də iframe daha tez açılır */
 (function warmUpYoutube() {
   if (!canPreview) return;
-  ["https://www.youtube.com", "https://i.ytimg.com", "https://www.google.com"].forEach((href) => {
+  [
+    "https://www.youtube.com",
+    "https://i.ytimg.com",
+    "https://www.google.com",
+  ].forEach((href) => {
     const link = document.createElement("link");
     link.rel = "preconnect";
     link.href = href;
@@ -130,15 +136,22 @@ function onYoutubePlaying(frame, callback) {
     if (e.source !== frame.contentWindow || typeof e.data !== "string") return;
     try {
       const data = JSON.parse(e.data);
-      const state = data.info && typeof data.info === "object" ? data.info.playerState : data.info;
-      if (data.event === "onStateChange" ? data.info === 1 : state === 1) finish();
+      const state =
+        data.info && typeof data.info === "object"
+          ? data.info.playerState
+          : data.info;
+      if (data.event === "onStateChange" ? data.info === 1 : state === 1)
+        finish();
     } catch {
       /* YouTube-un başqa mesajları */
     }
   };
   window.addEventListener("message", onMessage);
   frame.addEventListener("load", () => {
-    frame.contentWindow?.postMessage(JSON.stringify({ event: "listening", id: 1 }), "*");
+    frame.contentWindow?.postMessage(
+      JSON.stringify({ event: "listening", id: 1 }),
+      "*",
+    );
   });
   setTimeout(finish, 2500); // ehtiyat: mesaj gəlməsə də önizləmə göstərilsin
   return () => {
@@ -187,7 +200,9 @@ function initCardPreview(card, wrap) {
 
     if (trailer.type === "youtube") {
       const frame = document.createElement("iframe");
-      const origin = /^https?:$/.test(location.protocol) ? `&origin=${encodeURIComponent(location.origin)}` : "";
+      const origin = /^https?:$/.test(location.protocol)
+        ? `&origin=${encodeURIComponent(location.origin)}`
+        : "";
       frame.src =
         `https://www.youtube.com/embed/${trailer.id}?autoplay=1&mute=1&controls=0&loop=1` +
         `&playlist=${trailer.id}&rel=0&playsinline=1&modestbranding=1&disablekb=1&iv_load_policy=3` +
@@ -221,13 +236,18 @@ function initCardPreview(card, wrap) {
   });
   card.addEventListener("pointerleave", stop);
   card.addEventListener("pointerdown", stop); // klik / dartma başlayanda dayansın
-  document.addEventListener("visibilitychange", () => document.hidden && stop());
+  document.addEventListener(
+    "visibilitychange",
+    () => document.hidden && stop(),
+  );
 }
 
-const detailUrl = (id) => pageUrl("client/detail/detail.html?id=" + encodeURIComponent(id));
+const detailUrl = (id) =>
+  pageUrl("client/detail/detail.html?id=" + encodeURIComponent(id));
 
 /* imdb (0–10) → 0–5 ulduz */
-const starCount = (imdb) => Math.max(0, Math.min(5, Math.round(Number(imdb) / 2) || 0));
+const starCount = (imdb) =>
+  Math.max(0, Math.min(5, Math.round(Number(imdb) / 2) || 0));
 
 /* Ulduzlar bəzəkdir (alt=""); məna ekran oxuyucuya konteynerin aria-label-ı ilə verilir */
 function starsHtml(imdb) {
@@ -238,12 +258,15 @@ function starsHtml(imdb) {
 const ratingLabel = (imdb) => `Rating: ${starCount(imdb)} out of 5`;
 
 function cardHtml(m) {
-  const category = m.category?.name ? `<span class="category-tag">${esc(m.category.name)}</span>` : "";
+  const category = m.category?.name
+    ? `<span class="category-tag">${esc(m.category.name)}</span>`
+    : "";
   return `
     <div class="movie-card" data-id="${esc(m.id)}"${m.fragman ? ` data-trailer="${esc(m.fragman)}"` : ""}>
       <div class="poster-wrap">
-        <img src="${esc(m.cover_url)}" alt="${esc(m.title)}" class="poster" loading="lazy"
-             onerror="this.onerror=null;this.src=FALLBACK_IMG" />
+       <img src="${esc(m.cover_url)}" alt="${esc(m.title)}" class="poster" loading="lazy" decoding="async"
+     onload="this.classList.add('is-loaded')"
+     onerror="this.onerror=null;this.src=FALLBACK_IMG;this.classList.add('is-loaded')" />
         <div class="poster-overlay">
           ${category}
           <div class="rating" role="img" aria-label="${ratingLabel(m.imdb)}">${starsHtml(m.imdb)}</div>
@@ -253,7 +276,8 @@ function cardHtml(m) {
     </div>`;
 }
 
-const canTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+const canTilt =
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
   !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* Hover → tilt + trailer önizləmə, klik / Enter / Space → detail səhifəsi.
@@ -268,7 +292,10 @@ function initMovieCards(scope = document, { preview = true } = {}) {
 
     const wrap = card.querySelector(".poster-wrap");
     if (wrap && !wrap.querySelector(".play-hover")) {
-      wrap.insertAdjacentHTML("beforeend", '<div class="play-hover"><i class="bi bi-play-fill"></i></div>');
+      wrap.insertAdjacentHTML(
+        "beforeend",
+        '<div class="play-hover"><i class="bi bi-play-fill"></i></div>',
+      );
     }
 
     /* Kursoru izləyən 3D tilt + spotlight (yalnız mouse, animasiya azaldılmayıbsa) */
@@ -283,9 +310,16 @@ function initMovieCards(scope = document, { preview = true } = {}) {
         const r = card.getBoundingClientRect(); // card özü fırlanmır → sabit ölçü
         const x = (e.clientX - r.left) / r.width;
         const y = (e.clientY - r.top) / r.height;
-        setTilt(`${((0.5 - y) * 9).toFixed(2)}deg`, `${((x - 0.5) * 11).toFixed(2)}deg`, `${(x * 100).toFixed(1)}%`, `${(y * 100).toFixed(1)}%`);
+        setTilt(
+          `${((0.5 - y) * 9).toFixed(2)}deg`,
+          `${((x - 0.5) * 11).toFixed(2)}deg`,
+          `${(x * 100).toFixed(1)}%`,
+          `${(y * 100).toFixed(1)}%`,
+        );
       });
-      card.addEventListener("pointerleave", () => setTilt("0deg", "0deg", "50%", "50%"));
+      card.addEventListener("pointerleave", () =>
+        setTilt("0deg", "0deg", "50%", "50%"),
+      );
     }
 
     if (preview) {

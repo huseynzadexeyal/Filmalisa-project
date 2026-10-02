@@ -24,7 +24,10 @@
     <!-- SEARCH PANEL CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    />
     <link rel="stylesheet" href="../../global/css/global.css" />
     <link rel="stylesheet" href="../../global/css/layout/app-sidebar.css" />
     <link rel="stylesheet" href="../../global/css/components/neon-title.css" />
@@ -78,8 +81,17 @@
         </a>
       </nav>
 
-      <button type="button" class="sidebar-link sidebar-logout" id="appLogoutBtn" title="Logout">
-        <img src="../../assets/icons/logout-sidebar.svg" alt="Logout" class="svg-icon" />
+      <button
+        type="button"
+        class="sidebar-link sidebar-logout"
+        id="appLogoutBtn"
+        title="Logout"
+      >
+        <img
+          src="../../assets/icons/logout-sidebar.svg"
+          alt="Logout"
+          class="svg-icon"
+        />
       </button>
     </aside>
 
@@ -88,7 +100,11 @@
       <div class="search-header">
         <h2 class="page-title">
           Search result
-          <img src="../../assets/icons/arrow-neon.svg" alt="arrow" class="title-arrow" />
+          <img
+            src="../../assets/icons/arrow-neon.svg"
+            alt="arrow"
+            class="title-arrow"
+          />
         </h2>
 
         <div class="search-bar">
@@ -98,14 +114,23 @@
             class="search-input"
             placeholder="Search..."
           />
-          <button class="search-add-btn" id="searchBtn">
-            <i class="fa-solid fa-plus"></i>
+          <button
+            class="search-add-btn"
+            id="searchBtn"
+            type="button"
+            aria-label="Search"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
-        <button type="button" class="m-cancel" id="searchCancel" hidden>Cancel</button>
+        <button type="button" class="m-cancel" id="searchCancel" hidden>
+          Cancel
+        </button>
       </div>
 
-      <h3 class="suggested-title" id="suggestedTitle" hidden>Suggested for you</h3>
+      <h3 class="suggested-title" id="suggestedTitle" hidden>
+        Suggested for you
+      </h3>
       <div class="movie-grid" id="searchResults"></div>
     </main>
     <!-- SEARCH PANEL JS -->

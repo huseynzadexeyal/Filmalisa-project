@@ -43,7 +43,7 @@ function setupCommentsTable() {
   });
 
   async function loadComments() {
-    tableBody.innerHTML = `<tr><td colspan="4" class="table-empty">Loading…</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="4" class="table-empty table-loading"><span class="table-spinner" aria-hidden="true"></span>Loading…</td></tr>`;
     try {
       const comments = await api.admin.comments();
       pager.setItems(comments || []);

@@ -224,3 +224,28 @@ tr:hover .cell-profile img {
   color: var(--placeholder-color);
   font-size: var(--fs-s14);
 }
+
+.table-loading {
+  display: table-cell;
+}
+.table-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  vertical-align: -4px;
+  border: 2px solid var(--input-color);
+  border-top-color: var(--button-color);
+  border-radius: 50%;
+  animation: table-spin 0.8s linear infinite;
+}
+@keyframes table-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .table-spinner {
+    animation-duration: 2s;
+  }
+}

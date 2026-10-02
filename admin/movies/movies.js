@@ -139,7 +139,7 @@ function setupMovieModal() {
   });
 
   async function loadMovies() {
-    tableBody.innerHTML = `<tr><td colspan="5" class="table-empty">Loading…</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="5" class="table-empty table-loading"><span class="table-spinner" aria-hidden="true"></span>Loading…</td></tr>`;
     try {
       const movies = await api.admin.movies();
       pager.setItems(movies || []);

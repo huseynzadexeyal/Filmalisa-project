@@ -62,7 +62,7 @@ function setupCategoryModal() {
     renderRow: (c) => buildRow(c.id, c.name),
   });
   async function loadCategories() {
-    tableBody.innerHTML = `<tr><td colspan="2" class="table-empty">Loading…</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="2" class="table-empty table-loading"><span class="table-spinner" aria-hidden="true"></span>Loading…</td></tr>`;
     try {
       const categories = await api.admin.categories();
 

@@ -54,7 +54,7 @@ function setupActorsCRUD() {
   });
 
   async function loadActors() {
-    tableBody.innerHTML = `<tr><td colspan="3" class="table-empty">Loading…</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="3" class="table-empty table-loading"><span class="table-spinner" aria-hidden="true"></span>Loading…</td></tr>`;
     try {
       const actors = await api.admin.actors();
       // 1. Gələn məlumatları tərsinə çeviririk ki, yenilər başda olsun
