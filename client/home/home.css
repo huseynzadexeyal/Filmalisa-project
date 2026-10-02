@@ -149,6 +149,12 @@ body {
   align-self: flex-start;
 }
 
+@media (min-width: 901px) {
+  .hero-tag {
+    margin-left: -14px;
+  }
+}
+
 .hero-title {
   font-size: 56px;
   font-weight: 500;
@@ -596,4 +602,11 @@ body {
 .m-topbar__nav a:active {
   color: var(--neon-color) !important;
   opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .hero-overlay .hero-tag {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 6px 14px;
+  }
 }
