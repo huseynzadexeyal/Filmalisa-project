@@ -52,14 +52,39 @@ async function init() {
 const HERO_SLIDE_COUNT = 4;
 const HERO_INTERVAL_MS = 3000;
 
-function renderHero(categories) {
+const HERO_MIN_WIDTH = 800; // bundan kiçik kapak hero-da bulanıq görünür
+
+/* Şəkil həqiqətən yüklənirmi və hero üçün yetərincə böyükdür? (5 san-də yüklənməsə → uyğun deyil) */
+function heroImageOk(url) {
+  return new Promise((resolve) => {
+    if (!url) return resolve(false);
+    const img = new Image();
+    const timer = setTimeout(() => resolve(false), 5000);
+    img.onload = () => {
+      clearTimeout(timer);
+      resolve(img.naturalWidth >= HERO_MIN_WIDTH);
+    };
+    img.onerror = () => {
+      clearTimeout(timer);
+      resolve(false);
+    };
+    img.src = url;
+  });
+}
+
+async function renderHero(categories) {
   const byId = new Map();
   categories.forEach((c) => {
     c.movies.forEach((m) => {
-      if (!byId.has(m.id)) byId.set(m.id, Object.assign({}, m, { categoryName: c.name }));
+      if (!byId.has(m.id))
+        byId.set(m.id, Object.assign({}, m, { categoryName: c.name }));
     });
   });
-  const picks = shuffle([...byId.values()]).slice(0, HERO_SLIDE_COUNT);
+  const candidates = shuffle([...byId.values()]);
+  const pool = candidates.slice(0, HERO_SLIDE_COUNT + 2);
+  const ok = await Promise.all(pool.map((m) => heroImageOk(m.cover_url)));
+  const good = pool.filter((_, i) => ok[i]);
+  const picks = (good.length ? good : candidates).slice(0, HERO_SLIDE_COUNT);
   if (!picks.length) return;
 
   const hero = document.getElementById("hero");
@@ -113,7 +138,10 @@ function renderHero(categories) {
   dots.className = "hero-dots";
   dots.setAttribute("role", "tablist");
   dots.innerHTML = picks
-    .map((_, k) => `<button type="button" class="hero-dot" role="tab" aria-label="Slide ${k + 1}"></button>`)
+    .map(
+      (_, k) =>
+        `<button type="button" class="hero-dot" role="tab" aria-label="Slide ${k + 1}"></button>`,
+    )
     .join("");
   hero.append(dots);
   const dotEls = [...dots.children];
@@ -179,7 +207,8 @@ function renderHero(categories) {
     const dx = e.clientX - swipeX;
     const dy = e.clientY - swipeY;
     swipeX = null;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) go(current + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5)
+      go(current + (dx < 0 ? 1 : -1));
   });
   hero.addEventListener("pointercancel", () => (swipeX = null));
 

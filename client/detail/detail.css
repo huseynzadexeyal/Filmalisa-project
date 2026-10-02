@@ -456,6 +456,15 @@
   cursor: pointer;
 }
 
+.detail-modal.has-video .detail-modal-box {
+  padding-top: 52px;
+}
+
+.detail-modal.has-video .detail-modal-close {
+  top: 10px;
+  right: 12px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .detail-content {

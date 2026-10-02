@@ -35,7 +35,7 @@ function setupContactTable() {
   });
 
   async function loadContacts() {
-    tableBody.innerHTML = `<tr><td colspan="5" class="table-empty">Loading…</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="5" class="table-empty table-loading"><span class="table-spinner" aria-hidden="true"></span>Loading…</td></tr>`;
     try {
       const contacts = await api.admin.contacts();
       // Məlumatları (əgər varsa) tərsinə çevirib paginator-a ötürürük

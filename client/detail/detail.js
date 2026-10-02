@@ -68,7 +68,9 @@ async function setupFavourite() {
 
   const paint = () => {
     btn.classList.toggle("active", isOn);
-    btn.querySelector("i").className = isOn ? "bi bi-check-lg" : "bi bi-plus-lg";
+    btn.querySelector("i").className = isOn
+      ? "bi bi-check-lg"
+      : "bi bi-plus-lg";
     const label = isOn ? "Remove from favourites" : "Add to favourites";
     btn.title = label;
     btn.setAttribute("aria-label", label);
@@ -78,7 +80,6 @@ async function setupFavourite() {
     const favs = await api.favorites();
     isOn = favs.some((m) => String(m.id) === String(movieId));
   } catch {
-    // favorit statusu yüklənməsə də səhifə işləməyə davam etsin
   }
   paint();
 
@@ -88,6 +89,10 @@ async function setupFavourite() {
       await api.toggleFavorite(movieId);
       isOn = !isOn;
       paint();
+      toast(
+        isOn ? "Added to favourites" : "Removed from favourites",
+        "success",
+      ); 
     } catch (err) {
       toast(err.message || "Operation failed.", "error");
     } finally {
@@ -159,6 +164,7 @@ function setupModal() {
   const play = () => {
     if (trailer) {
       if (!media.querySelector("iframe, video")) renderModalTrailer(media, trailer);
+      playBtn.style.display = "none";
       return;
     }
     if (movie.watch_url) window.open(movie.watch_url, "_blank", "noopener,noreferrer");
@@ -169,6 +175,7 @@ function setupModal() {
     trailer = getTrailerSource(movie.fragman);
 
     renderModalCover(media, Boolean(trailer), play);
+    playBtn.style.display = "";
     modal.classList.toggle("has-video", Boolean(trailer));
     $("modalTitle").textContent = movie.title;
     modal.hidden = false;

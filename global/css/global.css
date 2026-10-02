@@ -476,6 +476,11 @@ body {
     toast-out 0.25s ease forwards 3.75s;
 }
 
+.toast-container .toast {
+  display: flex;
+  width: auto;
+}
+
 .toast::after {
   content: "";
   position: absolute;
@@ -752,3 +757,22 @@ input:autofill {
   line-height: 1.6;
 }
 
+/* Poster tam yüklənməmiş görünməsin (yarımçıq/bulanıq görünüş olmasın), yüklənəndə yumşaq açılsın */
+.poster-wrap {
+  background: #1c1c24;
+}
+.poster-wrap .poster {
+  opacity: 0;
+}
+.poster-wrap .poster.is-loaded {
+  opacity: 1;
+  animation: posterFadeIn 0.35s ease;
+}
+@keyframes posterFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
