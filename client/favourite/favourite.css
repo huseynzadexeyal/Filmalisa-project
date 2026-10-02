@@ -48,7 +48,7 @@ body {
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-size: clamp(18px, 2vw + 12px, 20px);
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -60,7 +60,6 @@ body {
 
 /* ===========================================
    MOVIE GRID
-   Sabit 4 sütun əvəzinə ekrana görə avtomatik sütun sayı
    =========================================== */
 
 .movie-grid {
@@ -143,22 +142,16 @@ body {
    RESPONSIVE
    =========================================== */
 
-/* Kiçik noutbuk / böyük planşet */
 @media (max-width: 1199.98px) {
   .content {
-    padding: 56px 32px 32px;
+    padding: 74px 32px 32px;
   }
 }
 
-/* Planşet — sidebar daha dar */
 @media (max-width: 991.98px) {
   .content {
     margin-left: 88px;
-    padding: 40px 24px 32px;
-  }
-
-  .search-header {
-    margin-bottom: 24px;
+    padding: 74px 24px 32px;
   }
 
   .movie-grid {
@@ -171,47 +164,7 @@ body {
   }
 }
 
-/* Mobil — sidebar aşağıya, naviqasiya paneli kimi */
 @media (max-width: 767.98px) {
-  .sidebar {
-    position: fixed !important;
-    top: auto !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 64px !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    padding: 0 12px !important;
-    z-index: 1000;
-    background-color: var(--background-color);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .sidebar-logo {
-    display: none !important;
-  }
-
-  .sidebar-nav {
-    flex-direction: row !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    width: 100% !important;
-    max-width: 420px;
-    gap: 0 !important;
-    margin: 0 !important;
-  }
-
-  .content {
-    margin-left: 0;
-    padding: 24px 16px calc(64px + 24px);
-  }
-
-  .search-header {
-    margin-bottom: 20px;
-  }
-
   .movie-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
@@ -233,13 +186,8 @@ body {
     width: 12px;
     height: 12px;
   }
-
-  .empty-state {
-    font-size: 15px;
-  }
 }
 
-/* Çox kiçik telefonlar */
 @media (max-width: 359.98px) {
   .movie-grid {
     grid-template-columns: 1fr;
@@ -251,7 +199,6 @@ body {
   }
 }
 
-/* Hover olmayan (toxunma) cihazlarda zoom effekti söndürülür */
 @media (hover: none) {
   .movie-card:hover .poster {
     transform: none;
@@ -261,5 +208,39 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .poster {
     transition: none;
+  }
+}
+
+/* ===========================================
+    MOBILE LAYOUT
+   =========================================== */
+@media (max-width: 900px) {
+  body .content {
+    padding-top: 74px;
+  }
+
+  body .search-header {
+    position: static;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: auto;
+    min-height: 36px;
+    gap: 0;
+    margin: 0 0 32px;
+    padding: 0;
+    background: transparent;
+  }
+
+  body .search-header .page-title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  body .empty-state {
+    padding: 0;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
   }
 }
