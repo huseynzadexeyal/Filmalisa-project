@@ -153,18 +153,31 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--white-color);
+  background: linear-gradient(135deg, #0feffd, #9b51e0); /* logo cyan → sayt bənövşəyisi */
   border: none;
-  color: var(--background-color);
+  color: #0b0b14;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  box-shadow: 0 0 14px -3px rgba(15, 239, 253, 0.55);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-.search-add-btn:hover {
-  transform: scale(1.05);
+.search-add-btn:hover,
+.search-add-btn:focus-visible {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px -2px rgba(15, 239, 253, 0.75), 0 0 22px -6px rgba(155, 81, 224, 0.7);
+  outline: none;
+}
+
+/* Yazanda axtarış xanası cyan işıqlanır */
+.search-bar {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.search-bar:focus-within {
+  border-color: rgba(15, 239, 253, 0.55);
+  box-shadow: 0 0 0 3px rgba(15, 239, 253, 0.12);
 }
 
 /* ===========================================

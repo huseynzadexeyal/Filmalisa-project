@@ -14,7 +14,7 @@ function shuffle(arr) {
 
 async function init() {
   const content = document.getElementById("content");
-  content.innerHTML = `<p class="empty-state">Loading…</p>`;
+  content.innerHTML = `<div class="section-loading" role="status"><span>Loading…</span></div>`;
 
   let categories = [];
   try {

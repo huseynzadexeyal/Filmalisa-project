@@ -1,51 +1,51 @@
 /* =========================================================
-   Filmalisa — Səhifə yüklənmə ekranı (kino filmi mövzusu)
-   <head> daxilində, mümkün qədər tez yüklənməlidir ki, ağ/boş
-   ekran görünməsin:
+   Filmalisa — Yüklənmə göstəricisi (kino filmi mövzusu)
+   Səhifənin ortasında yığcam kart kimi görünür.
+   Bütün ekranı TUTMUR: scroll bağlanmır, kliklər keçir,
+   arxa fon görünməyə davam edir.
+
+   <head> daxilində qoşulur:
      <script src="../../global/js/components/page-loader.js"></script>
 
-   Nə vaxt gizlənir: səhifə (window load) bitəndə VƏ api.js-dən gedən
-   bütün sorğular cavab alanda (PageLoader.begin/end api.js-də çağırılır).
-   Səhifədən çıxarkən (başqa səhifəyə keçid) yavaş olarsa yenidən görünür.
+   API (api.js ilə uyğun, dəyişməyib):
+     PageLoader.begin() / PageLoader.end() / PageLoader.hide()
    ========================================================= */
 (() => {
   if (window.PageLoader) return;
 
-  const MIN_SHOW = 700; // çox sürətli yükləmədə də loader "yanıb-sönməsin"
-  const SETTLE = 220; // son sorğudan sonra yeni sorğu gəlməsini gözləyir
+  const SHOW_DELAY = 150; // bundan sürətli yükləmədə loader göstərilmir
+  const MIN_SHOW = 450; // göründükdən sonra "yanıb-sönməsin"
+  const SETTLE = 180; // son sorğudan sonra yeni sorğu gəlməsini gözləyir
   const MAX_WAIT = 15000; // nə olursa olsun, loader əbədi qalmasın
-  const LEAVE_DELAY = 180; // keçid bundan tez olsa loader görünmür
 
   const CSS = `
-    html.fa-loading { overflow: hidden; }
     .fa-loader {
-      position: fixed; inset: 0; z-index: 2147483000;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 26px; color: #fff;
-      background:
-        radial-gradient(ellipse at 50% 42%, rgba(15,239,253,.10), transparent 55%),
-        radial-gradient(ellipse at 50% 50%, #17171c 0%, #0a0a0d 75%);
-      font-family: "Raleway", system-ui, sans-serif;
-      opacity: 1; visibility: visible;
-      transition: opacity .55s ease, visibility .55s ease;
+      position: fixed; top: 50%; left: 50%; z-index: 2147483000;
+      transform: translate(-50%, -50%) scale(.96);
+      display: flex; flex-direction: column; align-items: center; gap: 11px;
+      width: min(168px, calc(100vw - 48px)); padding: 18px 16px 15px;
+      color: #fff; font-family: "Raleway", system-ui, sans-serif;
+      background: rgba(14, 14, 18, .88);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      border: 1px solid rgba(15, 239, 253, .18); border-radius: 14px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .55), 0 0 40px rgba(15, 239, 253, .08);
+      pointer-events: none; /* klikləri və scroll-u bloklamır */
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s ease, transform .3s ease, visibility .3s ease;
     }
-    .fa-loader.is-hide { opacity: 0; visibility: hidden; pointer-events: none; }
-    .fa-loader::after { /* yüngül film dənəsi / vinyetka */
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.65) 100%);
-    }
+    .fa-loader.is-show { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
 
-    .fa-reel-wrap { position: relative; width: 120px; height: 120px; }
+    .fa-reel-wrap { position: relative; width: 52px; height: 52px; }
     .fa-reel-wrap::before { /* proyektor işığı */
-      content: ""; position: absolute; inset: -30px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(15,239,253,.28), transparent 65%);
+      content: ""; position: absolute; inset: -12px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(15,239,253,.26), transparent 65%);
       animation: faGlow 2.4s ease-in-out infinite;
     }
     .fa-reel { position: relative; width: 100%; height: 100%; animation: faSpin 2.2s linear infinite;
-      filter: drop-shadow(0 0 10px rgba(15,239,253,.55)); }
+      filter: drop-shadow(0 0 8px rgba(15,239,253,.55)); }
 
     .fa-brand {
-      font-weight: 800; font-size: 26px; letter-spacing: .5em; padding-left: .5em;
+      font-weight: 800; font-size: 12.5px; letter-spacing: .38em; padding-left: .38em;
       text-transform: uppercase;
       background: linear-gradient(100deg, #8a8a94 20%, #0feffd 45%, #fff 50%, #0feffd 55%, #8a8a94 80%);
       background-size: 250% 100%;
@@ -54,31 +54,30 @@
     }
 
     .fa-strip { /* perforasiyalı kino lenti + axan işıq */
-      position: relative; width: min(260px, 70vw); height: 22px; overflow: hidden;
+      position: relative; width: 100%; height: 14px; overflow: hidden;
       background: #15151a; border-radius: 3px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 6px 24px rgba(0,0,0,.6);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08);
     }
     .fa-strip::before, .fa-strip::after {
-      content: ""; position: absolute; left: 0; right: 0; height: 5px;
-      background-image: linear-gradient(90deg, rgba(255,255,255,.78) 0 8px, transparent 8px 16px);
-      background-size: 16px 5px; animation: faFilm .9s linear infinite;
+      content: ""; position: absolute; left: 0; right: 0; height: 3px;
+      background-image: linear-gradient(90deg, rgba(255,255,255,.78) 0 6px, transparent 6px 12px);
+      background-size: 12px 3px; animation: faFilm .9s linear infinite;
     }
-    .fa-strip::before { top: 2px; }
-    .fa-strip::after { bottom: 2px; }
+    .fa-strip::before { top: 1.5px; }
+    .fa-strip::after { bottom: 1.5px; }
     .fa-strip i {
-      position: absolute; top: 8px; bottom: 8px; left: 0; width: 40%; border-radius: 2px;
+      position: absolute; top: 5px; bottom: 5px; left: 0; width: 40%; border-radius: 2px;
       background: linear-gradient(90deg, transparent, #0feffd, transparent);
-      box-shadow: 0 0 14px #0feffd; animation: faSweep 1.4s ease-in-out infinite;
+      box-shadow: 0 0 12px #0feffd; animation: faSweep 1.4s ease-in-out infinite;
     }
 
-    .fa-hint { font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #8d8d98;
-      min-height: 1em; z-index: 1; }
+    .fa-hint { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: #8d8d98; min-height: 1em; }
     .fa-hint::after { content: ""; animation: faDots 1.4s steps(4, end) infinite; }
 
     @keyframes faSpin { to { transform: rotate(360deg); } }
     @keyframes faGlow { 0%,100% { opacity: .55; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.08); } }
     @keyframes faShine { to { background-position: -250% 0; } }
-    @keyframes faFilm { to { background-position-x: -16px; } }
+    @keyframes faFilm { to { background-position-x: -12px; } }
     @keyframes faSweep { 0% { left: -40%; } 100% { left: 100%; } }
     @keyframes faDots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75%,100% { content: "..."; } }
 
@@ -106,13 +105,15 @@
     </svg>`;
 
   const root = document.documentElement;
-  const startedAt = Date.now();
   let pending = 0;
-  let loaded = document.readyState === "complete";
-  let settleTimer = null;
-  let hidden = false;
   let el = null;
+  let shown = false;
+  let shownAt = 0;
+  let showTimer = null;
+  let settleTimer = null;
+  let maxTimer = null;
   let hintTimer = null;
+  let removeTimer = null;
 
   const style = document.createElement("style");
   style.textContent = CSS;
@@ -130,7 +131,6 @@
       <div class="fa-strip"><i></i></div>
       <div class="fa-hint"></div>`;
     root.appendChild(el);
-    root.classList.add("fa-loading");
 
     const hint = el.querySelector(".fa-hint");
     let i = Math.floor(Math.random() * HINTS.length);
@@ -141,65 +141,85 @@
     }, 1800);
   }
 
-  function hide() {
-    if (hidden || !el) return;
-    hidden = true;
+  function show() {
+    clearTimeout(removeTimer);
+    if (!el || !el.isConnected) build();
+    shown = true;
+    shownAt = Date.now();
+    void el.offsetWidth; // transition işləsin deyə reflow
+    el.classList.add("is-show");
+    clearTimeout(maxTimer);
+    maxTimer = setTimeout(finish, MAX_WAIT);
+  }
+
+  function reallyHide() {
+    if (!shown || !el) return;
+    shown = false;
     clearInterval(hintTimer);
-    el.classList.add("is-hide");
-    root.classList.remove("fa-loading");
+    el.classList.remove("is-show");
     const node = el;
-    setTimeout(() => node.remove(), 700);
+    el = null;
+    removeTimer = setTimeout(() => node.remove(), 400);
+  }
+
+  function finish() {
+    clearTimeout(showTimer);
+    clearTimeout(maxTimer);
+    pending = 0;
+    if (!shown) return;
+    const wait = Math.max(0, MIN_SHOW - (Date.now() - shownAt));
+    setTimeout(reallyHide, wait);
   }
 
   function check() {
     clearTimeout(settleTimer);
-    if (hidden || !loaded || pending > 0) return;
+    if (pending > 0) return;
     settleTimer = setTimeout(() => {
-      if (pending > 0) return;
-      const wait = Math.max(0, MIN_SHOW - (Date.now() - startedAt));
-      setTimeout(hide, wait);
+      if (pending === 0) finish();
     }, SETTLE);
   }
 
-  /* api.js hər sorğuda çağırır; loader gizləndikdən sonra təsiri yoxdur */
+  function scheduleShow() {
+    if (shown) return;
+    clearTimeout(showTimer);
+    showTimer = setTimeout(() => {
+      if (pending > 0) show();
+    }, SHOW_DELAY);
+  }
+
   function begin() {
     pending++;
+    clearTimeout(settleTimer);
+    scheduleShow();
   }
+
   function end() {
     pending = Math.max(0, pending - 1);
     check();
   }
 
-  build();
-  setTimeout(hide, MAX_WAIT);
-
-  if (loaded) check();
-  else window.addEventListener("load", () => { loaded = true; check(); }, { once: true });
-
-  /* Başqa səhifəyə keçid yavaş olarsa, loader yenidən görünsün */
-  let leaveTimer = null;
-  window.addEventListener("beforeunload", () => {
-    clearTimeout(leaveTimer);
-    leaveTimer = setTimeout(() => {
-      if (!el) build();
-      else {
-        el.classList.remove("is-hide");
-        root.classList.add("fa-loading");
-        if (!el.isConnected) root.appendChild(el);
-      }
-      hidden = false;
-    }, LEAVE_DELAY);
-  });
+  /* İlk açılış: səhifə resursları yüklənənə qədər */
+  if (document.readyState !== "complete") {
+    pending++;
+    scheduleShow();
+    window.addEventListener(
+      "load",
+      () => {
+        pending = Math.max(0, pending - 1);
+        check();
+      },
+      { once: true }
+    );
+  }
 
   /* Geri düyməsi (bfcache) ilə qayıdanda loader qalmasın */
   window.addEventListener("pageshow", (e) => {
-    clearTimeout(leaveTimer);
     if (e.persisted) {
       pending = 0;
-      hidden = false;
-      hide();
+      clearTimeout(showTimer);
+      reallyHide();
     }
   });
 
-  window.PageLoader = { begin, end, hide };
+  window.PageLoader = { begin, end, hide: finish };
 })();

@@ -45,7 +45,9 @@ function renderInfo() {
     ? new Date(movie.created_at).toLocaleDateString()
     : "—";
 
-  $("watchLink").href = movie.watch_url || "#";
+  /* Watch link → filmin özünə (yeni tabda); link yoxdursa düymə göstərilmir */
+  if (movie.watch_url) $("watchLink").href = movie.watch_url;
+  else $("watchLink").style.display = "none";
 
   const actors = movie.actors || [];
   $("castList").innerHTML = actors.length
@@ -61,42 +63,57 @@ function renderInfo() {
     : emptyState("No cast info.");
 }
 
-/* + düyməsi → favoritə əlavə / çıxar (real API) */
+/* Ürək düyməsi → favoritə əlavə / çıxar (real API).
+   Yüklənmə düymənin öz ikonunda göstərilir (ümumi loader çıxmır). */
 async function setupFavourite() {
   const btn = $("favBtn");
   let isOn = false;
 
-  const paint = () => {
+  const setLoading = (on) => {
+    btn.classList.toggle("is-loading", on);
+    btn.disabled = on;
+    btn.setAttribute("aria-busy", on ? "true" : "false");
+  };
+
+  const paint = (animate = false) => {
     btn.classList.toggle("active", isOn);
-    btn.querySelector("i").className = isOn
-      ? "bi bi-check-lg"
-      : "bi bi-plus-lg";
+    if (animate && isOn) {
+      btn.classList.remove("pop");
+      void btn.offsetWidth; // animasiya təkrar işləsin
+      btn.classList.add("pop");
+    }
     const label = isOn ? "Remove from favourites" : "Add to favourites";
     btn.title = label;
     btn.setAttribute("aria-label", label);
   };
 
+  setLoading(true); // ilkin vəziyyət yoxlanana qədər ikon fırlanır
   try {
-    const favs = await api.favorites();
+    const favs = await api.favorites({ silent: true });
     isOn = favs.some((m) => String(m.id) === String(movieId));
   } catch {
+    /* vəziyyət bilinmir → "əlavə et" kimi qalır */
   }
   paint();
+  setLoading(false);
 
   btn.addEventListener("click", async () => {
-    btn.disabled = true;
+    setLoading(true);
     try {
       await api.toggleFavorite(movieId);
       isOn = !isOn;
-      paint();
+      paint(true);
+      document.dispatchEvent(
+        new CustomEvent("favourite:changed", { detail: { id: movieId, on: isOn } }),
+      );
       toast(
         isOn ? "Added to favourites" : "Removed from favourites",
         "success",
-      ); 
+      );
     } catch (err) {
       toast(err.message || "Operation failed.", "error");
     } finally {
-      btn.disabled = false;
+      setLoading(false);
     }
   });
 }
@@ -190,8 +207,32 @@ function setupModal() {
     $("posterBtn").focus();
   };
 
+  /* Telefon: modal yoxdur — Play basılanda fragman elə həmin yerdə açılır, Play itir.
+     Fragman yoxdursa film linki (Watch link) açılır. */
+  const phone = window.matchMedia("(max-width: 600px)");
+  const posterBtn = $("posterBtn");
+
+  const playInline = () => {
+    const src = getTrailerSource(movie.fragman);
+    if (!src) {
+      if (movie.watch_url) window.open(movie.watch_url, "_blank", "noopener,noreferrer");
+      else toast("No trailer or watch link for this movie.", "error");
+      return;
+    }
+    const player = document.createElement("div");
+    player.className = "detail-player";
+    renderModalTrailer(player, src); // iframe/video — klikdən sonra avtomatik oynayır
+    posterBtn.after(player);
+    posterBtn.style.display = "none"; // poster + Play itir
+  };
+
+  const syncPosterLabel = () =>
+    posterBtn.setAttribute("aria-label", phone.matches ? "Play trailer" : "Open preview");
+  syncPosterLabel();
+  phone.addEventListener?.("change", syncPosterLabel);
+
   playBtn.addEventListener("click", play);
-  $("posterBtn").addEventListener("click", open);
+  posterBtn.addEventListener("click", () => (phone.matches ? playInline() : open()));
   $("modalClose").addEventListener("click", close);
   modal.addEventListener("click", (e) => e.target === modal && close());
   document.addEventListener("keydown", (e) => {
@@ -199,7 +240,7 @@ function setupModal() {
   });
 }
 
-/* Eyni kateqoriyadan digər filmlər — home-dakı kimi slider (scrollbar yox, ox düymələri + drag/swipe) */
+/* Eyni kateqoriyadan digər filmlər — home-dakı kimi slider (ox düymələri + drag/swipe + hover trailer) */
 async function renderSimilar() {
   const list = $("similarList");
   if (!movie.category) {
@@ -215,7 +256,7 @@ async function renderSimilar() {
       return;
     }
     list.innerHTML = sliderHtml(similar.map(cardHtml).join(""), "movie-scroll-large");
-    initMovieCards(list, { preview: false }); // detail-də hover-də trailer açılmasın
+    initMovieCards(list); // home-dakı kimi: kartın üzərinə gələndə trailer səssiz oynayır
     initSlider(list.querySelector(".movie-slider"));
   } catch {
     list.innerHTML = emptyState("Could not load similar movies.");

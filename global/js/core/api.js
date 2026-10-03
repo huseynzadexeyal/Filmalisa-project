@@ -199,11 +199,12 @@ const formatDate = (iso) =>
    4. ƏSAS SORĞU FUNKSİYASI
    =========================================== */
 async function apiRequest(path, opts) {
-  window.PageLoader?.begin(); // yüklənmə ekranı sorğular bitənə qədər qalır
+  const quiet = opts?.silent; // silent: true → kiçik əməliyyatlarda (favorit düyməsi) ümumi loader göstərilmir
+  if (!quiet) window.PageLoader?.begin(); // yüklənmə göstəricisi sorğular bitənə qədər qalır
   try {
     return await apiRequestRaw(path, opts);
   } finally {
-    window.PageLoader?.end();
+    if (!quiet) window.PageLoader?.end();
   }
 }
 
@@ -285,8 +286,8 @@ const api = {
   categories: () => apiRequest("/categories"),
   movies: () => apiRequest("/movies"),
   movie: (id) => apiRequest(`/movies/${id}`),
-  favorites: () => apiRequest("/movies/favorites"),
-  toggleFavorite: (id) => apiRequest(`/movie/${id}/favorite`, { method: "POST" }), // əlavə edir / çıxarır
+  favorites: (opts) => apiRequest("/movies/favorites", opts),
+  toggleFavorite: (id) => apiRequest(`/movie/${id}/favorite`, { method: "POST", silent: true }), // əlavə edir / çıxarır
   comments: (id) => apiRequest(`/movies/${id}/comments`),
   addComment: (id, comment) => apiRequest(`/movies/${id}/comment`, { method: "POST", body: { comment } }),
   removeComment: (id, commentId) => apiRequest(`/movies/${id}/comment/${commentId}`, { method: "DELETE" }),

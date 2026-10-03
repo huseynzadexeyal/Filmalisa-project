@@ -242,6 +242,96 @@ function initCardPreview(card, wrap) {
   );
 }
 
+/* ===========================================
+   FAVORİT DÜYMƏSİ (kartların üzərində)
+   Detail-ə girmədən əlavə / çıxar. Vəziyyət səhifədə bir dəfə yüklənir və
+   bütün kartlar arasında paylaşılır; 'favourite:changed' hadisəsi ilə sinxron qalır.
+   =========================================== */
+let favIds = null; // Set<string> — yükləndikdən sonra
+let favFailed = false;
+let favPromise = null;
+
+const FAV_ICON = `<svg class="fav-icon" viewBox="0 0 24 24" aria-hidden="true"><g class="fav-bm"><path class="fav-mark" pathLength="100" d="M7 3h10v18l-5-4-5 4z"/><path class="fav-perf" d="M9.3 5.5v8M14.7 5.5v8"/></g></svg>`;
+
+/* Gradient bir dəfə səhifəyə qoyulur (cyan → bənövşəyi) */
+function ensureFavDefs() {
+  if (document.getElementById("favGradCard")) return;
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="favGradCard" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0feffd"/><stop offset="1" stop-color="#9b51e0"/></linearGradient></defs></svg>',
+  );
+}
+
+function ensureFavourites() {
+  if (!favPromise) {
+    favPromise = api
+      .favorites({ silent: true })
+      .then((list) => {
+        favIds = new Set(list.map((m) => String(m.id)));
+      })
+      .catch(() => {
+        favFailed = true; // vəziyyət bilinmir → düymələr gizlədilir (səhvən çıxarmasın)
+      });
+  }
+  return favPromise;
+}
+
+/* Favourite səhifəsi siyahını artıq yükləyib → təkrar sorğu göndərmə */
+function setFavouriteIds(list) {
+  favIds = new Set(list.map((m) => String(m.id)));
+  favFailed = false;
+  favPromise = Promise.resolve();
+}
+
+function paintCardFav(btn, on, animate = false) {
+  btn.classList.remove("is-loading");
+  btn.disabled = false;
+  btn.hidden = false;
+  btn.classList.toggle("active", on);
+  btn.setAttribute("aria-pressed", on ? "true" : "false");
+  const label = on ? "Remove from favourites" : "Add to favourites";
+  btn.title = label;
+  btn.setAttribute("aria-label", label);
+  if (animate && on) {
+    btn.classList.remove("pop");
+    void btn.offsetWidth; // animasiya təkrar işləsin
+    btn.classList.add("pop");
+  }
+}
+
+function syncCardFavs(scope = document) {
+  scope.querySelectorAll(".card-fav[data-fav]").forEach((btn) => {
+    if (favFailed) btn.hidden = true;
+    else if (favIds) paintCardFav(btn, favIds.has(btn.dataset.fav));
+  });
+}
+
+async function toggleCardFav(btn) {
+  if (!favIds || btn.classList.contains("is-loading")) return;
+  const id = btn.dataset.fav;
+  btn.classList.add("is-loading");
+  btn.disabled = true;
+  try {
+    await api.toggleFavorite(id);
+    const on = !favIds.has(id);
+    document.dispatchEvent(new CustomEvent("favourite:changed", { detail: { id, on } }));
+    toast(on ? "Added to favourites" : "Removed from favourites", "success");
+  } catch (err) {
+    btn.classList.remove("is-loading");
+    btn.disabled = false;
+    toast(err.message || "Operation failed.", "error");
+  }
+}
+
+/* Hər hansı yerdən (kart, detail düyməsi) dəyişiklik olanda bütün eyni kartlar yenilənir */
+document.addEventListener("favourite:changed", (e) => {
+  const id = String(e.detail.id);
+  if (favIds) e.detail.on ? favIds.add(id) : favIds.delete(id);
+  document
+    .querySelectorAll(`.card-fav[data-fav="${CSS.escape(id)}"]`)
+    .forEach((b) => paintCardFav(b, e.detail.on, true));
+});
+
 const detailUrl = (id) =>
   pageUrl("client/detail/detail.html?id=" + encodeURIComponent(id));
 
@@ -258,6 +348,9 @@ function starsHtml(imdb) {
 const ratingLabel = (imdb) => `Rating: ${starCount(imdb)} out of 5`;
 
 function cardHtml(m) {
+  const favOn = !!favIds && favIds.has(String(m.id));
+  const favState = favIds ? (favOn ? " active" : "") : " is-loading";
+  const favLabel = favOn ? "Remove from favourites" : "Add to favourites";
   const category = m.category?.name
     ? `<span class="category-tag">${esc(m.category.name)}</span>`
     : "";
@@ -272,6 +365,8 @@ function cardHtml(m) {
           <div class="rating" role="img" aria-label="${ratingLabel(m.imdb)}">${starsHtml(m.imdb)}</div>
           <h3 class="movie-title">${esc(m.title)}</h3>
         </div>
+        <button type="button" class="card-fav${favState}" data-fav="${esc(m.id)}"
+          aria-label="${favLabel}" title="${favLabel}" aria-pressed="${favOn}"${favIds ? "" : " disabled"}>${FAV_ICON}</button>
       </div>
     </div>`;
 }
@@ -283,6 +378,8 @@ const canTilt =
 /* Hover → tilt + trailer önizləmə, klik / Enter / Space → detail səhifəsi.
    { preview: false } → hover-də trailer önizləməsi olmasın (detail səhifəsindəki oxşar filmlər) */
 function initMovieCards(scope = document, { preview = true } = {}) {
+  ensureFavDefs();
+  ensureFavourites().then(() => syncCardFavs(scope));
   scope.querySelectorAll(".movie-card[data-id]").forEach((card) => {
     if (card.dataset.ready) return;
     card.dataset.ready = "1";
@@ -327,9 +424,18 @@ function initMovieCards(scope = document, { preview = true } = {}) {
       if (canPreview && !card.dataset.trailer) prefetchObserver?.observe(card);
     }
 
+    /* Favorit düyməsi: kartın klikini (detail-ə keçid) tutmasın */
+    const favBtn = card.querySelector(".card-fav");
+    favBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleCardFav(favBtn);
+    });
+
     const go = () => (location.href = detailUrl(card.dataset.id));
     card.addEventListener("click", go);
     card.addEventListener("keydown", (e) => {
+      if (e.target !== card) return; // düymədə Enter/Space kartı açmasın
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault(); // Space səhifəni sürüşdürməsin
         go();
