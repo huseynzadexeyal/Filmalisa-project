@@ -301,7 +301,15 @@
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     font-size: 14px;
+    /* ikon gradient rənglə (cyan → bənövşəyi) */
+    background: linear-gradient(135deg, #0feffd, #9b51e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
+  .search-add-btn { box-shadow: none; }
+  .search-bar:focus-within { box-shadow: inset 0 0 0 1px rgba(15, 239, 253, 0.55); }
   .m-cancel {
     display: block;
     order: 4; /* .search-bar order:3-dən sonra → sağda */
@@ -391,6 +399,28 @@
   }
   .empty-state { padding: 40px 0; text-align: center; color: var(--m-muted); }
 
+  /* ===== KARTDA FAVORİT DÜYMƏSİ (telefon) ===== */
+  .card-fav {
+    width: 28px;
+    height: 28px;
+    top: 5px;
+    right: 5px;
+    border-width: 1.2px;
+    background: rgba(10, 10, 13, 0.7);
+  }
+  .card-fav::after { content: ""; position: absolute; inset: -8px; } /* toxunma sahəsi ~44px */
+  .card-fav .fav-icon { width: 15px; height: 15px; }
+  .card-fav:hover { transform: none; }
+  /* Təklif siyahısı: ad ilə Play dairəsinin arasında, normal axında */
+  .movie-grid.is-list .card-fav {
+    position: static;
+    flex: none;
+    width: 34px;
+    height: 34px;
+    margin-right: 6px;
+  }
+  .movie-grid.is-list .card-fav .fav-icon { width: 18px; height: 18px; }
+
   /* ===== DETAIL ===== */
   .detail-hero { display: none; }
   .detail-content { padding-top: 0; padding-bottom: 16px; }
@@ -422,6 +452,16 @@
     box-shadow: 0 0 18px -2px rgba(15, 239, 253, 0.5), 0 0 24px -6px rgba(252, 12, 252, 0.6);
     animation: none;
   }
+  /* "Play" yazısı dairənin altında */
+  .detail-poster .play-hover { flex-direction: column; gap: 8px; }
+  .detail-poster .play-hover::after {
+    content: "Play";
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+  }
   .detail-poster .play-hover i::before { content: none; }
   .detail-poster .play-hover i::after {
     content: "";
@@ -432,6 +472,22 @@
     border-style: solid;
     border-width: 9px 0 9px 15px;
     border-color: transparent transparent transparent #fff;
+  }
+
+  /* Play basılanda poster əvəzinə fragman oynayır (modalsız) */
+  .detail-player {
+    margin: 0 -14px;
+    width: calc(100% + 28px);
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+  .detail-player iframe,
+  .detail-player video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #000;
   }
 
   .detail-text { padding-top: 14px; }
@@ -463,7 +519,9 @@
       0 0 20px -4px rgba(15, 239, 253, 0.45),
       0 0 28px -8px rgba(252, 12, 252, 0.55);
     color: #fff;
-    font-size: 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
   }
   .watch-badge:hover { color: #fff; filter: none; }
   .watch-badge:active { transform: scale(0.98); }
@@ -475,13 +533,6 @@
     background: var(--wn-gradient);
     clip-path: polygon(0 0, 100% 50%, 0 100%);
     filter: drop-shadow(0 0 4px rgba(15, 239, 253, 0.6));
-  }
-  .watch-badge::after {
-    content: "Play";
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   }
 
   /* My List düyməsi: ikon + yazı, Play-in altında */
@@ -501,9 +552,9 @@
     font-size: 11px;
     justify-self: start;
   }
-  .fav-btn i { font-size: 22px; }
+  .fav-btn .fav-icon { width: 24px; height: 24px; }
   .fav-btn::after { content: "My List"; color: var(--m-muted); }
-  .fav-btn.active i { color: #0feffd; }
+  .fav-btn.pop::before { display: none; }
 
   .detail-desc { margin: 16px 0 10px; font-size: 14px; line-height: 1.55; color: rgba(255, 255, 255, 0.85); }
   .detail-rating { background: none; padding: 0; color: #46d369; font-weight: 700; }

@@ -776,3 +776,95 @@ input:autofill {
     opacity: 1;
   }
 }
+/* ==== Kontent sahəsi yüklənərkən: yer saxlayır (layout tullanmasın) ==== */
+.section-loading {
+  min-height: 240px;
+  grid-column: 1 / -1;
+}
+.section-loading span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ===========================================
+   KARTDA FAVORİT DÜYMƏSİ — film lenti əlfəcini (cyan → bənövşəyi)
+   =========================================== */
+.card-fav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(10, 10, 13, 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.card-fav[hidden] { display: none; }
+.card-fav:hover,
+.card-fav:focus-visible {
+  border-color: #0feffd;
+  color: #0feffd;
+  transform: scale(1.08);
+  outline: none;
+}
+.card-fav .fav-icon { width: 18px; height: 18px; overflow: visible; }
+.card-fav .fav-bm {
+  transform: translateY(-1.5px);
+  transition: transform 0.35s cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+.card-fav .fav-mark {
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+  transition: fill 0.25s ease;
+}
+.card-fav .fav-perf {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1.4 1.8;
+}
+.card-fav.active {
+  color: #0feffd;
+  border-color: transparent;
+  background:
+    linear-gradient(#121214, #121214) padding-box,
+    linear-gradient(135deg, #0feffd, #9b51e0) border-box;
+}
+.card-fav.active .fav-bm { transform: none; }
+.card-fav.active .fav-mark { fill: url(#favGradCard); stroke: url(#favGradCard); }
+.card-fav.active .fav-perf { stroke: #121214; }
+
+.card-fav.is-loading { cursor: progress; color: #0feffd; border-color: rgba(15, 239, 253, 0.4); }
+.card-fav.is-loading .fav-mark {
+  stroke: url(#favGradCard);
+  stroke-dasharray: 32 68;
+  animation: cardFavTrace 0.9s linear infinite;
+}
+.card-fav.is-loading .fav-perf { stroke: #9b51e0; animation: cardFavFilm 0.5s linear infinite; }
+.card-fav.pop .fav-icon { animation: cardFavPop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1); }
+@keyframes cardFavTrace { to { stroke-dashoffset: -100; } }
+@keyframes cardFavFilm { to { stroke-dashoffset: -3.2; } }
+@keyframes cardFavPop { 0% { transform: scale(0.6); } 100% { transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .card-fav.is-loading .fav-mark,
+  .card-fav.is-loading .fav-perf,
+  .card-fav.pop .fav-icon { animation: none; }
+  .card-fav.is-loading .fav-mark { stroke-dasharray: none; }
+}

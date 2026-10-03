@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!loaded) {
       searchRequested = true;
       suggestedTitle.hidden = true;
-      resultsGrid.innerHTML = `<p class="empty-state">Loading…</p>`;
+      resultsGrid.innerHTML = `<div class="section-loading" role="status"><span>Loading…</span></div>`;
       return;
     }
     searchRequested = false;

@@ -185,10 +185,87 @@
   color: #0feffd;
 }
 
+
+/* ---- Film lenti əlfəcini: cyan → bənövşəyi (logo + sayt rəngləri) ---- */
+.fav-btn {
+  position: relative;
+}
+.fav-icon {
+  width: 20px;
+  height: 20px;
+  overflow: visible;
+}
+.fav-bm {
+  transform: translateY(-1.5px);
+  transition: transform 0.35s cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+.fav-mark {
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+  transition: fill 0.25s ease;
+}
+.fav-perf {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1.4 1.8; /* film perforasiyası */
+  transition: stroke 0.2s ease;
+}
+
+/* Aktiv: gradient dolu əlfəcin + gradient halqa, öz yerinə "düşür" */
 .fav-btn.active {
-  border-color: #0feffd;
-  background: #0feffd;
-  color: #000;
+  color: #0feffd;
+  border-color: transparent;
+  background:
+    linear-gradient(#121214, #121214) padding-box,
+    linear-gradient(135deg, #0feffd, #9b51e0) border-box;
+}
+.fav-btn.active .fav-bm { transform: none; }
+.fav-btn.active .fav-mark { fill: url(#favGrad); stroke: url(#favGrad); }
+.fav-btn.active .fav-perf { stroke: #121214; }
+
+/* Yüklənmə: gradient kontur əlfəcin boyunca axır, perforasiyalar film kimi sürüşür */
+.fav-btn.is-loading,
+.fav-btn:disabled { cursor: progress; }
+.fav-btn.is-loading {
+  color: #0feffd;
+  border-color: rgba(15, 239, 253, 0.4);
+  background: transparent;
+}
+.fav-btn.is-loading .fav-mark {
+  stroke: url(#favGrad);
+  stroke-dasharray: 32 68;
+  animation: favTrace 0.9s linear infinite;
+}
+.fav-btn.is-loading .fav-perf {
+  stroke: #9b51e0;
+  animation: favFilm 0.5s linear infinite;
+}
+@keyframes favTrace { to { stroke-dashoffset: -100; } }
+@keyframes favFilm { to { stroke-dashoffset: -3.2; } }
+
+/* Əlavə olunanda: halqa yayılır */
+.fav-btn.pop .fav-icon { animation: favPop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.fav-btn.pop::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid #9b51e0;
+  animation: favRing 0.55s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes favPop { 0% { transform: scale(0.6); } 100% { transform: scale(1); } }
+@keyframes favRing { from { transform: scale(1); opacity: 0.9; } to { transform: scale(1.9); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fav-btn.is-loading .fav-mark { animation: none; stroke-dasharray: none; }
+  .fav-btn.is-loading .fav-perf,
+  .fav-btn.pop .fav-icon,
+  .fav-btn.pop::before { animation: none; }
 }
 
 .detail-desc {
