@@ -7,9 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const suggestedTitle = document.getElementById("suggestedTitle");
 
   let allMovies = [];
-  let loaded = false; // filmlər gəlməmiş "tapılmadı" səhifəsinə yönləndirməyək
-  let searchRequested = false; // sorğu göndərilib, amma filmlər hələ yüklənməyib
-  let loadError = ""; // yükləmə uğursuz olubsa, axtarışda bu mesaj göstərilir
+  let loaded = false; // təklif sırası üçün filmlər yüklənibmi
   const cancelBtn = document.getElementById("searchCancel");
   const phone = window.matchMedia("(max-width: 600px)");
   const PHONE_LIST_SIZE = 12; // telefonda "Search result" siyahısının uzunluğu
@@ -54,55 +52,62 @@ document.addEventListener("DOMContentLoaded", () => {
     renderSuggested();
   }
 
-  function handleSearch() {
-    const query = searchInput.value.trim().toLowerCase();
-    if (!query) {
-      searchRequested = false;
+  // Heç nə tapılmadısa → 404 səhifəsi (axtarılan söz ilə birlikdə)
+  function showNotFound() {
+    location.href =
+      pageUrl("client/404-error/404.html") +
+      "?q=" +
+      encodeURIComponent(searchInput.value.trim());
+  }
+
+  function showLoading() {
+    suggestedTitle.hidden = true;
+    resultsGrid.classList.remove("is-list");
+    resultsGrid.innerHTML = `<div class="section-loading" role="status"><span>Loading…</span></div>`;
+  }
+
+  // Köhnə (gec gələn) cavabın yenisini əzməməsi üçün sorğu nömrəsi
+  let searchSeq = 0;
+
+  // Axtarış yalnız API ilə: GET /movies?search=...
+  async function handleSearch() {
+    const raw = searchInput.value.trim();
+    const seq = ++searchSeq;
+
+    if (!raw) {
       clearResults();
       return;
     }
 
-    // Filmlər hələ gəlməyibsə: yüklənmə bitəndə axtarış avtomatik icra olunacaq
-    if (!loaded && loadError) {
-      suggestedTitle.hidden = true;
-      resultsGrid.innerHTML = emptyState(loadError);
-      return;
-    }
-    if (!loaded) {
-      searchRequested = true;
-      suggestedTitle.hidden = true;
-      resultsGrid.innerHTML = `<div class="section-loading" role="status"><span>Loading…</span></div>`;
-      return;
-    }
-    searchRequested = false;
-    const filtered = allMovies.filter((m) =>
-      (m.title || "").toLowerCase().includes(query),
-    );
+    showLoading();
 
-    /* Heç nə tapılmadısa → 404 səhifəsi (axtarılan söz ilə birlikdə) */
-    if (loaded && !filtered.length) {
-      const rawQuery = searchInput.value.trim();
-      location.href =
-        pageUrl("client/404-error/404.html") + "?q=" + encodeURIComponent(rawQuery);
+    let results;
+    try {
+      results = await api.searchMovies(raw);
+    } catch (err) {
+      if (seq !== searchSeq) return;
+      console.error("[search] API axtarışı alınmadı:", err);
+      suggestedTitle.hidden = true;
+      resultsGrid.innerHTML = emptyState(err.message || "Search failed. Please try again.");
       return;
     }
-    renderResults(filtered);
+    if (seq !== searchSeq) return; // arada yeni sorğu/təmizləmə olub
+
+    if (!Array.isArray(results) || !results.length) {
+      showNotFound();
+      return;
+    }
+    renderResults(results);
   }
 
-  // Filmlər yüklənir; sorğu yoxdursa təklif sırası, varsa axtarış nəticəsi göstərilir
+  // Təklif sırası üçün filmlər yüklənir (axtarışın özü API ilə gedir)
   async function loadMovies() {
     try {
       allMovies = await api.movies();
       loaded = true;
-      if (searchRequested || searchInput.value.trim()) handleSearch();
-      else renderSuggested();
+      if (!searchInput.value.trim()) renderSuggested();
     } catch (err) {
-      loadError = err.message || "Failed to load movies.";
-      if (searchRequested) {
-        searchRequested = false;
-        suggestedTitle.hidden = true;
-        resultsGrid.innerHTML = emptyState(loadError);
-      }
+      console.error("[search] filmlər yüklənmədi:", err);
     }
   }
 
@@ -121,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cancelBtn) {
     cancelBtn.addEventListener("click", () => {
       searchInput.value = "";
-      searchRequested = false;
+      searchSeq++;
       syncCancel();
       clearResults();
       searchInput.focus();
@@ -132,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   searchInput.addEventListener("input", () => {
     syncCancel();
     if (!searchInput.value.trim()) {
-      searchRequested = false;
+      searchSeq++; // gözləyən axtarış cavabı ləğv olunsun
       clearResults();
     }
   });
