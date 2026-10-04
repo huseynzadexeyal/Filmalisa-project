@@ -286,6 +286,8 @@ const api = {
   categories: () => apiRequest("/categories"),
   movies: () => apiRequest("/movies"),
   movie: (id) => apiRequest(`/movies/${id}`),
+  // Postman: GET /movies?search=... (title və description üzrə). silent → hər axtarışda ümumi loader yanıb-sönməsin
+  searchMovies: (query) => apiRequest(`/movies?search=${encodeURIComponent(query)}`, { silent: true }),
   favorites: (opts) => apiRequest("/movies/favorites", opts),
   toggleFavorite: (id) => apiRequest(`/movie/${id}/favorite`, { method: "POST", silent: true }), // əlavə edir / çıxarır
   comments: (id) => apiRequest(`/movies/${id}/comments`),
